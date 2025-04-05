@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Harshil Shah</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <a href="index.html" class="logo">HS</a>
+            <button class="mobile-menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="research.html">Research</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html" class="active">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Page Header -->
+        <section class="page-header">
+            <h1>Contact</h1>
+            <p>Let's connect and explore possibilities</p>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact-page">
+            <div class="contact-container">
+                <div class="contact-info-section">
+                    <h2>Get In Touch</h2>
+                    <p>I'm open to elaborating on my research or hearing about any opportunities. Feel free to reach out through any of the channels below:</p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-method">
+                            <i class="fas fa-envelope"></i>
+                            <div class="contact-text">
+                                <h3>Email</h3>
+                                <p><a href="mailto:28hshah@gmail.com">28hshah@gmail.com</a></p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-method">
+                            <i class="fab fa-discord"></i>
+                            <div class="contact-text">
+                                <h3>Discord</h3>
+                                <p><a href="#">harshils</a></p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-method">
+                            <i class="fab fa-github"></i>
+                            <div class="contact-text">
+                                <h3>GitHub</h3>
+                                <p><a href="https://github.com/har5h1l" target="_blank">github.com/har5h1l</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form-section">
+                    <h2>Send a Message</h2>
+                    <p>Have a specific question or proposal? Use the form below to reach out directly:</p>
+                    
+                    <form class="contact-form" action="https://formsubmit.co/28hshah@gmail.com" method="POST">
+                        <!-- Honeypot field for spam protection -->
+                        <input type="text" name="_honey" style="display:none">
+                        
+                        <!-- Disable Captcha -->
+                        <input type="hidden" name="_captcha" value="false">
+                        
+                        <!-- Redirect after submission -->
+                        <input type="hidden" name="_next" value="thank-you.html">
+                        
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <a href="index.html" class="footer-logo">HS</a>
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="research.html">Research</a>
+                <a href="blog.html">Blog</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Harshil Shah. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 
