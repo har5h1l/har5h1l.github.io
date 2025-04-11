@@ -67,29 +67,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Contact form submission
-    const contactForm = document.querySelector('.contact-form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            // In a real implementation, this would send data to a server
-            alert('Thank you for your message! I\'ll get back to you soon.');
-            contactForm.reset();
-        });
-    }
-
-    // Newsletter subscription handling
-    const newsletterForm = document.querySelector('.newsletter-form');
-    if (newsletterForm) {
-        newsletterForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            // In a real implementation, you would send the subscription to a server
-            // For now, just show a success message
-            alert('Thank you for subscribing to my newsletter!');
-            newsletterForm.reset();
-        });
-    }
-
     // Mobile menu toggle
     const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
     const navMenu = document.querySelector('nav ul');

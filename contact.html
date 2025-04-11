@@ -87,6 +87,18 @@
                         <!-- Format email template -->
                         <input type="hidden" name="_template" value="table">
                         
+                        <!-- Debug mode -->
+                        <input type="hidden" name="_debug" value="1">
+                        
+                        <!-- Auto response -->
+                        <input type="hidden" name="_autoresponse" value="Thank you for your message! I'll get back to you soon.">
+                        
+                        <!-- Reply to sender -->
+                        <input type="hidden" name="_replyto" value="%email%">
+                        
+                        <!-- CC sender -->
+                        <input type="hidden" name="_cc" value="%email%">
+                        
                         <div class="form-group">
                             <label for="name">Name</label>
                             <input type="text" id="name" name="name" required>
