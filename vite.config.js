@@ -31,5 +31,5 @@ export default defineConfig({
       },
     },
   },
-  base: '/',
+  base: '/hars5h1l.github.io/',
 })
