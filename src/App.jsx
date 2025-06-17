@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { ThemeProvider } from '@/components/theme-provider'
 import { Navigation } from '@/components/navigation'
 import { Footer } from '@/components/footer'
+import ScrollToTop from '@/components/ScrollToTop'
 import Home from '@/pages/Home'
 import Projects from '@/pages/Projects'
 import Blog from '@/pages/Blog'
@@ -13,6 +14,7 @@ function App() {
   return (
     <ThemeProvider defaultTheme="system" storageKey="harshil-theme">
       <Router>
+        <ScrollToTop />
         <div className="min-h-screen flex flex-col font-sans text-foreground">
           <Navigation />
           <main className="flex-1 pt-16">
