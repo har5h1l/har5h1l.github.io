@@ -186,15 +186,15 @@ export default function Projects() {
                 </li>
                 <li className="flex items-center">
                   <span className="w-1.5 h-1.5 rounded-full bg-primary mr-2"></span>
-                  JavaScript/TypeScript
+                  Julia
                 </li>
                 <li className="flex items-center">
                   <span className="w-1.5 h-1.5 rounded-full bg-primary mr-2"></span>
-                  C/C++
+                  JavaScript
                 </li>
                 <li className="flex items-center">
                   <span className="w-1.5 h-1.5 rounded-full bg-primary mr-2"></span>
-                  MATLAB
+                  TypeScript
                 </li>
               </ul>
             </motion.div>
