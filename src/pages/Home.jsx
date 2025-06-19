@@ -9,6 +9,8 @@ import harshilImage1 from "@/assets/images/harshil_pfp.jpeg";
 import freakonomicsImage from '@/assets/images/freakonomics.jpg'
 import websiteTutorialImage from '@/assets/images/website_tutorial.webp'
 import housePricesImage from '@/assets/images/HousePricesArticle.webp'
+import windows11Image from '@/assets/images/windows11.webp'
+import actinfImage from '@/assets/images/actinf1_2.jpeg'
 import { allProjects } from '@/data/projects';
 import { ProjectCard } from '@/components/ProjectCard';
 import { useTheme } from '@/components/theme-provider';
@@ -24,6 +26,22 @@ const parseDate = (dateStr) => {
 };
 
 const articles = [
+  {
+    title: "How to Set Up a Free Windows or Linux Virtual Machine on Azure (Step-by-Step Guide for Beginners)",
+    description: "Step-by-step guide to set up a free Windows or Linux virtual machine through Azure on Mac or any OS using free credits.",
+    date: "May 18, 2025",
+    image: windows11Image,
+    tags: ["Cloud Computing", "Tutorial", "Azure"],
+    link: "https://medium.com/@harshilshah28/how-to-set-up-a-free-windows-or-linux-virtual-machine-on-azure-step-by-step-guide-for-beginners-2391bce5235a"
+  },
+  {
+    title: "Autonomous Navigation with Active Inference: My Journey So Far",
+    description: "A Beginner-Friendly Guide to Active Inference for Autonomous Navigation: Pathfinding with Generative Models and Variational Free Energy",
+    date: "May 11, 2025",
+    image: actinfImage,
+    tags: ["Active Inference", "AI/ML", "Research"],
+    link: "https://medium.com/@harshilshah28/autonomous-navigation-with-active-inference-my-journey-so-far-d1852e23cc2a"
+  },
   {
     title: "What Freakonomics Taught Me About Incentives, Information, and the Hidden Side of Life",
     description: "Explore Freakonomics by Steven Levitt & Stephen Dubner—learn how data, incentives, and curiosity uncover hidden truths about everyday life.",
