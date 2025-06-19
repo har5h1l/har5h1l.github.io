@@ -11,6 +11,7 @@ import websiteTutorialImage from '@/assets/images/website_tutorial.webp'
 import housePricesImage from '@/assets/images/HousePricesArticle.webp'
 import { allProjects } from '@/data/projects';
 import { ProjectCard } from '@/components/ProjectCard';
+import { useTheme } from '@/components/theme-provider';
 
 // Function to parse date string into Date object for consistent sorting
 const parseDate = (dateStr) => {
@@ -56,6 +57,23 @@ const featuredProjects = allProjects.filter(p =>
 
 export default function Home() {
   const [isLeadershipExpanded, setIsLeadershipExpanded] = useState(false)
+  const { theme } = useTheme()
+  
+  // Function to determine if we should use dark mode chart
+  const isDarkMode = () => {
+    if (theme === 'dark') return true
+    if (theme === 'system') {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches
+    }
+    return false
+  }
+  
+  // Get appropriate chart URL based on theme
+  const getChartUrl = () => {
+    return isDarkMode() 
+      ? 'https://ghchart.rshah.org/39d353/har5h1l' // GitHub's dark mode green
+      : 'https://ghchart.rshah.org/har5h1l' // Default green for light mode
+  }
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
@@ -335,6 +353,25 @@ export default function Home() {
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* GitHub Contribution Chart */}
+      <section className="py-12 bg-background">
+        <div className="max-w-4xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-4xl font-bold mb-6">My GitHub Contributions</h2>
+            <img 
+              src={getChartUrl()} 
+              alt="har5h1l's GitHub chart" 
+              className="w-full max-w-2xl" 
+            />
           </motion.div>
         </div>
       </section>
