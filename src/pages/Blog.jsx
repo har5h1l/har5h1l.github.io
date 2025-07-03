@@ -6,13 +6,14 @@ import housePricesImage from '@/assets/images/HousePricesArticle.webp'
 import AIvenndiagramImage from '@/assets/images/AIvenndiagram.webp'
 import windows11Image from '@/assets/images/windows11.webp'
 import actinfImage from '@/assets/images/actinf1_2.jpeg'
+import polymathImage from '@/assets/images/polymath_article_image.png'
 
 const articles = [
   {
     title: "Explore, Specialize, Repeat: What It Means to Be a Polymath Today",
     description: "Discover the modern approach to becoming a polymath in today's specialized world. Learn how to balance broad exploration with deep expertise and why this matters more than ever in the 21st century.",
     date: "July 3, 2025",
-    image: "/src/assets/images/polymath_article_image.png",
+    image: polymathImage,
     tags: ["Personal Development", "Learning", "Polymath"],
     link: "https://medium.com/@harshilshah28/explore-specialize-repeat-what-it-means-to-be-a-polymath-today-b692f8b47c24"
   },
