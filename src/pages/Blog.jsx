@@ -9,6 +9,14 @@ import actinfImage from '@/assets/images/actinf1_2.jpeg'
 
 const articles = [
   {
+    title: "Explore, Specialize, Repeat: What It Means to Be a Polymath Today",
+    description: "Discover the modern approach to becoming a polymath in today's specialized world. Learn how to balance broad exploration with deep expertise and why this matters more than ever in the 21st century.",
+    date: "July 3, 2025",
+    image: "/src/assets/images/polymath_article_image.png",
+    tags: ["Personal Development", "Learning", "Polymath"],
+    link: "https://medium.com/@harshilshah28/explore-specialize-repeat-what-it-means-to-be-a-polymath-today-b692f8b47c24"
+  },
+  {
     title: "How to Set Up a Free Windows or Linux Virtual Machine on Azure (Step-by-Step Guide for Beginners)",
     description: "Step-by-step guide to set up a free Windows or Linux virtual machine through Azure on Mac or any OS using free credits.",
     date: "May 18, 2025",
