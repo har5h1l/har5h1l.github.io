@@ -17,25 +17,35 @@ const finishedBooks = [
     title: "Essentialism",
     author: "Greg McKeown",
     tags: ["Productivity", "Personal Development"]
+  },
+  {
+    title: "10% Happier",
+    author: "Dan Harris",
+    tags: ["Self-Help", "Mindfulness", "Memoir"]
   }
 ]
 
-const currentReading = {
-  title: "Principles: Life and Work",
-  author: "Ray Dalio",
-  tags: ["Business", "Philosophy", "Leadership"]
-}
+const currentReadings = [
+  {
+    title: "The Daily Laws",
+    author: "Robert Greene",
+    tags: ["Personal Development", "Psychology", "Strategy"]
+  },
+  {
+    title: "Principles: Life and Work",
+    author: "Ray Dalio",
+    tags: ["Business", "Philosophy", "Leadership"]
+  }
+]
 
 const readingList = [
   "The Last Lecture",
   "Mindset: The New Psychology of Success",
   "Measure What Matters: How Google, Bono, and the Gates Foundation Rock the World with OKRs",
-  "10% Happier",
   "Atomic Habits",
   "Breaking the Habit of Being Yourself",
   "The Richest Man in Babylon",
   "The Psychology of Money",
-  "Daily Laws",
   "Sherlock Holmes",
   "The Grapes of Wrath",
   "The Count of Monte Cristo"
@@ -86,8 +96,10 @@ export default function Reading() {
           className="mb-12"
         >
           <h2 className="text-2xl font-semibold mb-6">Currently Reading</h2>
-          <div className="grid grid-cols-1 gap-6">
-            <BookCard book={currentReading} isCurrent={true} />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {currentReadings.map((book, index) => (
+              <BookCard key={book.title} book={book} index={index} isCurrent={true} />
+            ))}
           </div>
         </motion.div>
 
