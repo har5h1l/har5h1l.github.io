@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { ThemeToggle } from './theme-toggle'
-import harshilImage1 from '../assets/images/harshil_pfp.jpeg'
+import harshilImage1 from '../assets/images/harshil_pfp.png'
 
 export function Navigation() {
   const location = useLocation()
@@ -72,7 +72,7 @@ export function Navigation() {
             <Link to="/" className="block">
               <h2 className="text-lg font-bold gradient-text">Harshil Shah</h2>
               <p className="text-sm gradient-text font-normal truncate opacity-80">
-                researcher, developer, learner
+                researcher, learner, thinker
               </p>
             </Link>
           </div>

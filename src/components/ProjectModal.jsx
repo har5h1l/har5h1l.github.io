@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { X } from 'lucide-react';
+import { X, ExternalLink, Github } from 'lucide-react';
 
 export const ProjectModal = ({ project, onClose }) => {
   if (!project) return null;
@@ -29,11 +29,11 @@ export const ProjectModal = ({ project, onClose }) => {
         </Button>
         
         <div className="grid md:grid-cols-2 gap-8">
-          <div className="relative h-64 md:h-auto">
+          <div className="relative h-64 md:h-auto bg-muted flex items-center justify-center">
             <img
               src={project.image}
               alt={project.title}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain"
             />
           </div>
           
@@ -53,18 +53,34 @@ export const ProjectModal = ({ project, onClose }) => {
               <p className="whitespace-pre-line">{project.description}</p>
             </div>
             
-            {project.github && project.github !== '#' && (
-              <div className="mt-6">
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
-                >
-                  View on GitHub
-                </a>
-              </div>
-            )}
+            <div className="mt-6 flex gap-3 flex-wrap">
+              {project.link && (
+                <Button asChild>
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2"
+                  >
+                    <ExternalLink className="h-4 w-4" />
+                    View Research Page
+                  </a>
+                </Button>
+              )}
+              {project.github && project.github !== '#' && (
+                <Button asChild variant={project.link ? "outline" : "default"}>
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2"
+                  >
+                    <Github className="h-4 w-4" />
+                    View on GitHub
+                  </a>
+                </Button>
+              )}
+            </div>
           </div>
         </div>
       </div>

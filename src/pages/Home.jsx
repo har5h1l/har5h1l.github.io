@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { ArrowRight, Github, ExternalLink, Mail, MessageSquare, Brain, FlaskConical, Users } from 'lucide-react'
+import { ArrowRight, Github, ExternalLink, Mail, MessageSquare, Brain, FlaskConical, Users, Calendar } from 'lucide-react'
 import riseTennisLogo from '@/assets/images/risetennis.png'
 import { Link } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import harshilImage1 from "@/assets/images/harshil_pfp.jpeg";
+import harshilImage1 from "@/assets/images/harshil_pfp.png";
 import freakonomicsImage from '@/assets/images/freakonomics.jpg'
 import websiteTutorialImage from '@/assets/images/website_tutorial.webp'
 import housePricesImage from '@/assets/images/HousePricesArticle.webp'
@@ -14,6 +14,7 @@ import actinfImage from '@/assets/images/actinf1_2.jpeg'
 import polymathImage from '@/assets/images/polymath_article_image.png'
 import { allProjects } from '@/data/projects';
 import { ProjectCard } from '@/components/ProjectCard';
+import { ProjectModal } from '@/components/ProjectModal';
 import { useTheme } from '@/components/theme-provider';
 
 // Function to parse date string into Date object for consistent sorting
@@ -77,13 +78,12 @@ const articles = [
   }
 ]
 
-const featuredProjects = allProjects.filter(p => 
-  p.title === 'Hierarchical Active Inference for Autonomous Drone Navigation in Microsoft AirSim with Environmentally Aware Adaptive Planning' ||
-  p.title === 'WellnessGrid'
-);
+const featuredProjects = allProjects.filter(p => p.featured === true);
 
 export default function Home() {
   const [isLeadershipExpanded, setIsLeadershipExpanded] = useState(false)
+  const [selectedProject, setSelectedProject] = useState(null)
+  const [showGitHubChart, setShowGitHubChart] = useState(false) // Hide by default since it's not working
   const { theme } = useTheme()
   
   // Function to determine if we should use dark mode chart
@@ -97,9 +97,10 @@ export default function Home() {
   
   // Get appropriate chart URL based on theme
   const getChartUrl = () => {
+    const timestamp = new Date().toISOString().split('T')[0]; // Cache-busting with current date
     return isDarkMode() 
-      ? 'https://ghchart.rshah.org/39d353/har5h1l' // GitHub's dark mode green
-      : 'https://ghchart.rshah.org/har5h1l' // Default green for light mode
+      ? `https://ghchart.rshah.org/39d353/har5h1l?timestamp=${timestamp}` // GitHub's dark mode green
+      : `https://ghchart.rshah.org/har5h1l?timestamp=${timestamp}` // Default green for light mode
   }
   return (
     <div className="min-h-screen bg-background">
@@ -132,15 +133,83 @@ export default function Home() {
             >
               <div className="mb-2">
                 <span className="text-xl font-medium bg-gradient-to-r from-primary via-purple-600 to-pink-500 bg-clip-text text-transparent">
-                  researcher, developer, learner
+                  researcher, learner, thinker
                 </span>
               </div>
               <h1 className="text-4xl font-bold mb-4">Hi, I'm Harshil...</h1>
               <p className="text-lg leading-relaxed mb-6">
-                I'm a student from the Bay Area passionate about AI's ability to solve scientific challenges. I've applied <strong>active inference</strong> and <strong>machine learning</strong> and am passionate about <strong>medicine</strong>, <strong>biology</strong>, and <strong>neuroscience</strong>. Other than research, I enjoy reading, writing, and trying various recipes. I consider myself a life-long learner because I'm constantly seeking new knowledge and skills to expand my understanding of the world.
+                I'm a student from the Bay Area in California passionate about the development of more intelligent AI and its application to solve critical problems. My research interests are interdisciplinary, including <strong>medicine</strong>, <strong>biology</strong>, and <strong>neuroscience</strong>. Other than research, I love <strong>debate</strong>, <strong>mathematics</strong>, <strong>reading</strong>, and <strong>tennis</strong>. I consider myself a life-long learner because I'm constantly seeking new knowledge and skills to expand my understanding of the world.
               </p>
             </motion.div>
           </div>
+        </div>
+      </section>
+
+      {/* Recent Activity Section */}
+      <section className="py-12 bg-muted/30">
+        <div className="max-w-4xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <div className="flex items-center gap-3 mb-8">
+              <Calendar className="h-8 w-8 text-primary" />
+              <h2 className="text-4xl font-bold">Recent Activity</h2>
+            </div>
+            
+            <div className="space-y-4">
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+                className="bg-card border border-border rounded-lg p-6 hover:shadow-md transition-shadow"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="text-sm font-medium text-foreground/60 min-w-[120px]">
+                    Jul 29, 2025
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-foreground mb-3">
+                      Accepted to present at{' '}
+                      <a 
+                        href="https://iwaiworkshop.github.io/" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-primary hover:underline font-medium"
+                      >
+                        IWAI (International Workshop on Active Inference)
+                      </a>
+                      {' '}for October 15-17! My presentation on the 17th will cover{' '}
+                      <a 
+                        href="https://shahmaitraresearch.com/" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-primary hover:underline"
+                      >
+                        "Combining Hierarchical Active Inference with Affordance Theory for Scalable Policy Selection in Autonomous Drone Navigation"
+                      </a>
+                      {' '}(co-authored with Satyaki Maitra).
+                    </p>
+                    <Button 
+                      size="sm" 
+                      variant="outline"
+                      onClick={() => {
+                        const droneProject = allProjects.find(p => 
+                          p.title === "Combining Hierarchical Active Inference with Affordance Theory for Scalable Policy Selection in Autonomous Drone Navigation"
+                        )
+                        setSelectedProject(droneProject)
+                      }}
+                    >
+                      Learn More
+                    </Button>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
@@ -151,6 +220,24 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="mb-12"
+          >
+            <h2 className="text-4xl font-bold mb-6">More About Me</h2>
+            <p className="text-lg text-foreground/80 mb-4 leading-relaxed">
+              I've been learning and applying Active Inference for around a year now (big thanks to <a href="https://activeinference.org/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Active Inference Institute</a> & Dr. Friedman). Beyond that, I've been working with mainstream AI, including machine learning models and LLMs. I'm a contributor to <a href="https://www.medarc.ai/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">MedArc's fMRI foundational model</a> and built a simple app called <Link to="/projects#wellnessgrid" className="text-primary hover:underline">WellnessGrid</Link> to centralize healthcare information and support chronic disease patients. Recently, I've been getting more involved with GNNs for computational biology research.
+            </p>
+            <p className="text-lg text-foreground/80 mb-4 leading-relaxed">
+              Other than research, I love competing in public forum debate (3rd year), playing tennis (6 years), <Link to="/reading" className="text-primary hover:underline">reading</Link>, experimenting with recipes and drinks (huge chocolate lover), listening to podcasts, and more. I've built a nonprofit called <a href="https://risetennis.org/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">R.I.S.E. Tennis</a>, where we aim to spread tennis to underserved communities.
+            </p>
+            <p className="text-lg text-foreground/80 leading-relaxed">
+              Mathematics has been a huge part of my life and I love learning more; it teaches you to think really well. I love interdisciplinary thinking in every aspect of my life; I enjoy learning about topics like psychology, how the brain works, how the world works, and more. Currently, I think I'll become a research scientist or entrepreneur one day.
+            </p>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
             className="prose prose-lg max-w-none"
           >
@@ -189,7 +276,7 @@ export default function Home() {
                 <p className="text-sm text-foreground/80">
                   {isLeadershipExpanded ? (
                     <>
-                      President and founder of numerous organizations like <a href="https://risetennis.org/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">R.I.S.E. Tennis</a>, Empower Debate Bay Area chapter, leading elementary school debate program for Fremont Debate Academy, and Activities Coordinator for school Neuroscience Club.{' '}
+                      President and founder of numerous organizations like <a href="https://risetennis.org/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">R.I.S.E. Tennis</a>, leading elementary school debate program for Fremont Debate Academy, and Activities Coordinator for school Neuroscience Club.{' '}
                       <button onClick={() => setIsLeadershipExpanded(false)} className="text-primary/80 hover:text-primary font-medium">(less)</button>
                     </>
                   ) : (
@@ -338,7 +425,20 @@ export default function Home() {
                     <span className="text-xs text-foreground/60">
                       {project.date}
                     </span>
-                    <div className="flex gap-2">
+                    <div className="flex gap-2 flex-wrap">
+                      {project.link && (
+                        <Button size="sm" asChild>
+                          <a 
+                            href={project.link} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-1 text-xs"
+                          >
+                            <ExternalLink className="h-3.5 w-3.5" />
+                            Research
+                          </a>
+                        </Button>
+                      )}
                       {project.github && project.github !== '#' && (
                         <Button variant="outline" size="sm" asChild>
                           <a 
@@ -352,12 +452,12 @@ export default function Home() {
                           </a>
                         </Button>
                       )}
-                      <Button size="sm" asChild>
+                      <Button size="sm" asChild variant="outline">
                         <Link 
                           to={`/projects?filter=${encodeURIComponent(project.category)}#${project.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')}`}
                           className="text-xs"
                         >
-                          View Project
+                          Details
                         </Link>
                       </Button>
                     </div>
@@ -385,23 +485,25 @@ export default function Home() {
       </section>
 
       {/* GitHub Contribution Chart */}
-      <section className="py-12 bg-background">
-        <div className="max-w-4xl mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl font-bold mb-6">My GitHub Contributions</h2>
-            <img 
-              src={getChartUrl()} 
-              alt="har5h1l's GitHub chart" 
-              className="w-full max-w-2xl" 
-            />
-          </motion.div>
-        </div>
-      </section>
+      {showGitHubChart && (
+        <section className="py-12 bg-background">
+          <div className="max-w-4xl mx-auto px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-4xl font-bold mb-6">My GitHub Contributions</h2>
+              <img 
+                src={getChartUrl()} 
+                alt="har5h1l's GitHub chart" 
+                className="w-full max-w-2xl" 
+              />
+            </motion.div>
+          </div>
+        </section>
+      )}
 
       {/* Contact Information */}
       <section className="py-12 bg-background">
@@ -470,6 +572,15 @@ export default function Home() {
                   <span>Medium</span>
                 </a>
                 <a
+                  href="https://shahmaitraresearch.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 text-foreground hover:text-primary transition-colors"
+                >
+                  <ExternalLink className="h-5 w-5 flex-shrink-0" />
+                  <span>Research Page (Shah-Maitra)</span>
+                </a>
+                <a
                   href="https://risetennis.org/"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -487,6 +598,9 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
+
+      {/* Project Modal */}
+      <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
     </div>
   )
 }

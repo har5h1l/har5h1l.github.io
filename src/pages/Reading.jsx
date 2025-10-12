@@ -22,6 +22,16 @@ const finishedBooks = [
     title: "10% Happier",
     author: "Dan Harris",
     tags: ["Self-Help", "Mindfulness", "Memoir"]
+  },
+  {
+    title: "The Last Lecture",
+    author: "Randy Pausch & Jeffrey Zaslow",
+    tags: ["Memoir", "Inspiration", "Life Lessons"]
+  },
+  {
+    title: "The Concrete Rose",
+    author: "Angie Thomas",
+    tags: ["Fiction", "Young Adult", "Coming of Age"]
   }
 ]
 
@@ -35,11 +45,20 @@ const currentReadings = [
     title: "Principles: Life and Work",
     author: "Ray Dalio",
     tags: ["Business", "Philosophy", "Leadership"]
+  },
+  {
+    title: "Oedipus Rex",
+    author: "Sophocles",
+    tags: ["Classic", "Tragedy", "Greek Literature"]
+  },
+  {
+    title: "The Subtle Art of Not Giving a F***",
+    author: "Mark Manson",
+    tags: ["Self-Help", "Philosophy", "Personal Development"]
   }
 ]
 
 const readingList = [
-  "The Last Lecture",
   "Mindset: The New Psychology of Success",
   "Measure What Matters: How Google, Bono, and the Gates Foundation Rock the World with OKRs",
   "Atomic Habits",
