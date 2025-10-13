@@ -29,7 +29,7 @@ const finishedBooks = [
     tags: ["Memoir", "Inspiration", "Life Lessons"]
   },
   {
-    title: "concrete rose",
+    title: "Concrete Rose",
     author: "Angie Thomas",
     tags: ["Fiction", "Young Adult", "Coming of Age"]
   }
