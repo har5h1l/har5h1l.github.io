@@ -138,7 +138,7 @@ export default function Home() {
               </div>
               <h1 className="text-4xl font-bold mb-4">Hi, I'm Harshil...</h1>
               <p className="text-lg leading-relaxed mb-6">
-                I'm a student from the Bay Area in California passionate about the development of more intelligent AI and its application to solve critical problems. My research interests are interdisciplinary, including <strong>medicine</strong>, <strong>biology</strong>, and <strong>neuroscience</strong>. Other than research, I love <strong>debate</strong>, <strong>mathematics</strong>, <strong>reading</strong>, and <strong>tennis</strong>. I consider myself a life-long learner because I'm constantly seeking new knowledge and skills to expand my understanding of the world.
+                I'm a student from the Bay Area in California passionate about the development of more intelligent AI and its application to solve critical problems. My research interests are interdisciplinary, including <strong>medicine</strong>, <strong>biology</strong>, and <strong>neuroscience</strong>. I'm also an active member of the <strong>Active Inference</strong> community. Other than research, I love <strong>debate</strong>, <strong>mathematics</strong>, <strong>reading</strong>, and <strong>tennis</strong>. I consider myself a life-long learner because I'm constantly seeking new knowledge and skills to expand my understanding of the world.
               </p>
             </motion.div>
           </div>
