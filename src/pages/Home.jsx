@@ -5,7 +5,7 @@ import riseTennisLogo from '@/assets/images/risetennis.png'
 import { Link } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import harshilImage1 from "@/assets/images/harshil_pfp.png";
+import harshilImage1 from "@/assets/images/harshil_pfp.jpg";
 import freakonomicsImage from '@/assets/images/freakonomics.jpg'
 import websiteTutorialImage from '@/assets/images/website_tutorial.webp'
 import housePricesImage from '@/assets/images/HousePricesArticle.webp'

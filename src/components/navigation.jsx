@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { ThemeToggle } from './theme-toggle'
-import harshilImage1 from '../assets/images/harshil_pfp.png'
+import harshilImage1 from '../assets/images/harshil_pfp.jpg'
 
 export function Navigation() {
   const location = useLocation()
