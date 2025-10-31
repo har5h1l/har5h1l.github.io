@@ -1,4 +1,4 @@
-import { ExternalLink, Github, Star } from 'lucide-react'
+import { ExternalLink, Github, Star, PlayCircle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { useEffect, useRef, useState } from 'react'
@@ -83,6 +83,14 @@ export const ProjectCard = ({ project, onMoreInfo, isActInf }) => {
             <a href={project.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
               <ExternalLink className="h-4 w-4" />
               Research Page
+            </a>
+          </Button>
+        )}
+        {project.video && (
+          <Button asChild variant="default" size="sm">
+            <a href={project.video} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
+              <PlayCircle className="h-4 w-4" />
+              Video Demo
             </a>
           </Button>
         )}

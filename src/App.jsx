@@ -17,7 +17,7 @@ function App() {
         <ScrollToTop />
         <div className="min-h-screen flex flex-col font-sans text-foreground">
           <Navigation />
-          <main className="flex-1 pt-16">
+          <main className="flex-1 pt-14 sm:pt-16">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/projects" element={<Projects />} />

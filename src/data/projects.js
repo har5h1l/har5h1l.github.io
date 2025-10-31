@@ -54,7 +54,8 @@ export const allProjects = [
     image: AIvenndiagramImage,
     technologies: ["React", "Next.js", "TypeScript", "Healthcare"],
     category: "Biomedicine",
-    featured: true
+    featured: true,
+    video: "https://www.youtube.com/watch?v=9Ah2SN2-cDc&t=1s"
   },
   {
     title: "fMRI Foundation Model (Acknowledged Contributor)",
