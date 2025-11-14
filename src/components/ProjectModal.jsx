@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { X, ExternalLink, Github } from 'lucide-react';
+import { X, ExternalLink, Github, PlayCircle } from 'lucide-react';
 
 export const ProjectModal = ({ project, onClose }) => {
   if (!project) return null;
@@ -68,7 +68,7 @@ export const ProjectModal = ({ project, onClose }) => {
                 </Button>
               )}
               {project.github && project.github !== '#' && (
-                <Button asChild variant={project.link ? "outline" : "default"}>
+                <Button asChild variant="outline">
                   <a
                     href={project.github}
                     target="_blank"
@@ -77,6 +77,19 @@ export const ProjectModal = ({ project, onClose }) => {
                   >
                     <Github className="h-4 w-4" />
                     View on GitHub
+                  </a>
+                </Button>
+              )}
+              {project.video && (
+                <Button asChild variant="outline">
+                  <a
+                    href={project.video}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2"
+                  >
+                    <PlayCircle className="h-4 w-4" />
+                    Watch Video
                   </a>
                 </Button>
               )}

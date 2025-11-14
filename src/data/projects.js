@@ -14,14 +14,15 @@ export const allProjects = [
   },
   {
     title: "Combining Hierarchical Active Inference with Affordance Theory for Scalable Policy Selection in Autonomous Drone Navigation",
-    description: "This research integrates hierarchical active inference with affordance theory to address three critical challenges in autonomous drone navigation: managing continuous environments in hierarchical planning, connecting abstract reasoning to real-world perception, and maintaining computational efficiency for edge computing. Our framework introduces a latent suitability state that represents how the environment affords safety and navigability, intelligently filtering viable waypoints while bridging low-level perception with high-level planning. The system balances exploration with goal-directed behavior, tested in Microsoft AirSim with plans for real-world implementation. Presented at IWAI 2025. Co-authored with Satyaki Maitra. Code will be open-sourced soon.",
+    description: "This research integrates hierarchical active inference with affordance theory to address three critical challenges in autonomous drone navigation: managing continuous environments in hierarchical planning, connecting abstract reasoning to real-world perception, and maintaining computational efficiency for edge computing. Our framework introduces a latent suitability state that represents how the environment affords safety and navigability, intelligently filtering viable waypoints while bridging low-level perception with high-level planning. The system balances exploration with goal-directed behavior, tested in Microsoft AirSim with plans for real-world implementation. Presented at IWAI 2025 and the 5th Annual Active Inference Symposium. Co-authored with Satyaki Maitra. Code will be open-sourced soon.",
     image: droneImage,
     technologies: ["Active Inference", "Julia", "Python", "Robotics", "Drones"],
     github: "https://github.com/har5h1l/Hierarchical-Active-Inference-for-Autonomous-Drone-Navigation-in-Microsoft-AirSim",
     link: "https://shahmaitraresearch.com/",
     category: "Active Inference",
-    date: "Oct 2025",
-    featured: true
+    date: "Nov 2025",
+    featured: true,
+    video: "https://www.youtube.com/live/1q40Jqk1HYs?si=5W1C52U7gNkRb2l0&t=36000"
   },
   {
     title: "Nutritional Behavior Analytics",

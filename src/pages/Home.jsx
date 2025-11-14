@@ -169,6 +169,56 @@ export default function Home() {
               >
                 <div className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4">
                   <div className="text-xs sm:text-sm font-medium text-foreground/60 sm:min-w-[120px]">
+                    Nov 15, 2025
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-sm sm:text-base text-foreground mb-3">
+                      Presented "<a href="https://www.shahmaitraresearch.com/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Combining Hierarchical Active Inference with Affordance Theory for Scalable Policy Selection in Autonomous Drone Navigation</a>" (co-authored with Satyaki Maitra) at the <a href="https://www.activeinference.institute/symposium" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">5th Annual Active Inference Symposium</a>.
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      <Button 
+                        size="sm" 
+                        variant="outline"
+                        onClick={() => {
+                          const droneProject = allProjects.find(p => 
+                            p.title === "Combining Hierarchical Active Inference with Affordance Theory for Scalable Policy Selection in Autonomous Drone Navigation"
+                          )
+                          setSelectedProject(droneProject)
+                        }}
+                        className="inline-flex items-center gap-1"
+                      >
+                        <span>Learn More</span>
+                        <ArrowRight className="h-3 w-3 sm:h-4 sm:w-4" />
+                      </Button>
+                      <Button 
+                        size="sm" 
+                        variant="outline"
+                        asChild
+                        className="inline-flex items-center gap-1"
+                      >
+                        <a 
+                          href="https://www.youtube.com/live/1q40Jqk1HYs?si=5W1C52U7gNkRb2l0&t=36000" 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                        >
+                          <span>Watch Recording</span>
+                          <PlayCircle className="h-3 w-3 sm:h-4 sm:w-4" />
+                        </a>
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                viewport={{ once: true }}
+                className="bg-card border border-border rounded-lg p-4 sm:p-6 hover:shadow-md transition-shadow"
+              >
+                <div className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4">
+                  <div className="text-xs sm:text-sm font-medium text-foreground/60 sm:min-w-[120px]">
                     Jul 29, 2025
                   </div>
                   <div className="flex-1">
