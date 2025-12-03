@@ -32,6 +32,51 @@ const finishedBooks = [
     title: "Concrete Rose",
     author: "Angie Thomas",
     tags: ["Fiction", "Young Adult", "Coming of Age"]
+  },
+  {
+    title: "Once and For All",
+    author: "Sarah Dessen",
+    tags: ["Young Adult", "Romance", "Contemporary Fiction"]
+  },
+  {
+    title: "Infinite in Between",
+    author: "Carolyn Mackler",
+    tags: ["Young Adult", "Coming of Age", "Contemporary Fiction"]
+  },
+  {
+    title: "You Don't Live Here",
+    author: "Robyn Schneider",
+    tags: ["Young Adult", "Contemporary Fiction", "LGBTQ+"]
+  },
+  {
+    title: "Invisible Ghosts",
+    author: "Robyn Schneider",
+    tags: ["Young Adult", "Contemporary Fiction", "Paranormal"]
+  },
+  {
+    title: "Extraordinary Things",
+    author: "Beth Ann Bauman",
+    tags: ["Young Adult", "Contemporary Fiction", "Short Stories"]
+  },
+  {
+    title: "All the Bright Places",
+    author: "Jennifer Niven",
+    tags: ["Young Adult", "Contemporary Fiction", "Mental Health"]
+  },
+  {
+    title: "Sunrise on The Reaping",
+    author: "Suzanne Collins",
+    tags: ["Young Adult", "Dystopian", "Science Fiction"]
+  },
+  {
+    title: "The Beginning of Everything",
+    author: "Robyn Schneider",
+    tags: ["Young Adult", "Contemporary Fiction", "Coming of Age"]
+  },
+  {
+    title: "How to Love",
+    author: "Katie Cotugno",
+    tags: ["Young Adult", "Romance", "Contemporary Fiction"]
   }
 ]
 
