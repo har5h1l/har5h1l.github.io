@@ -77,6 +77,16 @@ const finishedBooks = [
     title: "How to Love",
     author: "Katie Cotugno",
     tags: ["Young Adult", "Romance", "Contemporary Fiction"]
+  },
+  {
+    title: "Oedipus Rex",
+    author: "Sophocles",
+    tags: ["Classic", "Tragedy", "Greek Literature"]
+  },
+  {
+    title: "Night",
+    author: "Elie Wiesel",
+    tags: ["Memoir", "History", "Holocaust"]
   }
 ]
 
@@ -92,19 +102,23 @@ const currentReadings = [
     tags: ["Business", "Philosophy", "Leadership"]
   },
   {
-    title: "Oedipus Rex",
-    author: "Sophocles",
-    tags: ["Classic", "Tragedy", "Greek Literature"]
-  },
-  {
     title: "The Subtle Art of Not Giving a F***",
     author: "Mark Manson",
     tags: ["Self-Help", "Philosophy", "Personal Development"]
+  },
+  {
+    title: "Mindset: The New Psychology of Success",
+    author: "Carol Dweck",
+    tags: ["Psychology", "Personal Development", "Self-Help"]
+  },
+  {
+    title: "The Notebook",
+    author: "Nicholas Sparks",
+    tags: ["Romance", "Fiction", "Contemporary"]
   }
 ]
 
 const readingList = [
-  "Mindset: The New Psychology of Success",
   "Measure What Matters: How Google, Bono, and the Gates Foundation Rock the World with OKRs",
   "Atomic Habits",
   "Breaking the Habit of Being Yourself",
