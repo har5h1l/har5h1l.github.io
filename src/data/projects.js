@@ -75,5 +75,19 @@ export const allProjects = [
     technologies: ["React", "TypeScript", "AI", "Web App"],
     github: "https://github.com/har5h1l/FocusGrid",
     category: "Other"
+  },
+  {
+    title: "Building GNNs for Drug Discovery",
+    description: "Working on building graph neural networks (GNNs) for drug discovery applications in the Xie research group. Exploring how GNNs can model molecular structures and predict drug properties.",
+    image: AIvenndiagramImage,
+    technologies: ["Graph Neural Networks", "Python", "Drug Discovery", "Deep Learning"],
+    category: "Biomedicine"
+  },
+  {
+    title: "Modelling Trust in Multi-Agent Active Inference",
+    description: "More details coming soon.",
+    image: AIvenndiagramImage,
+    technologies: ["Active Inference", "Multi-Agent Systems"],
+    category: "Active Inference"
   }
 ]
