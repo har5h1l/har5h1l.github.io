@@ -128,7 +128,7 @@ const sortedArticles = [...articles].sort((a, b) => {
 export default function Blog() {
   return (
     <div className="min-h-screen bg-background">
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-8 max-w-[900px]">
         <div className="mb-12">
           <h1 className="text-4xl font-bold mb-2">Blog & Articles</h1>
           <p className="text-muted-foreground">Thoughts and insights on AI, research, and more</p>
