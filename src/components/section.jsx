@@ -1,11 +1,11 @@
 import { motion } from 'framer-motion'
 
-export function Section({ 
-  children, 
-  className = '', 
+export function Section({
+  children,
+  className = '',
   containerClassName = '',
   animate = true,
-  ...props 
+  ...props
 }) {
   const content = (
     <section className={`section-padding ${className}`} {...props}>
@@ -22,7 +22,7 @@ export function Section({
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      viewport={{ once: true, margin: '-100px' }}
+      viewport={{ once: true }}
       className={`section-padding ${className}`}
       {...props}
     >

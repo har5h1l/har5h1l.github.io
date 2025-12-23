@@ -21,20 +21,20 @@ export function Navigation() {
 
         // only set up scroll listener for home page
         heroRef.current = document.getElementById('hero-section')
-        
+
         const handleScroll = () => {
             const scrolled = window.scrollY > 10
             setIsScrolled(scrolled)
-            
+
             if (heroRef.current) {
                 const heroBottom = heroRef.current.offsetTop + heroRef.current.offsetHeight
                 setIsExpanded(window.scrollY > heroBottom - 70)
             }
         }
-        
+
         // initial check in case we load the page already scrolled
         handleScroll()
-        
+
         window.addEventListener('scroll', handleScroll, { passive: true })
         return () => window.removeEventListener('scroll', handleScroll, { passive: true })
     }, [isHomePage])
@@ -45,23 +45,21 @@ export function Navigation() {
     }, [location.pathname])
 
     const navItems = [
+        { name: 'Research', path: '/research' },
         { name: 'Projects', path: '/projects' },
         { name: 'Blog', path: '/blog' },
         { name: 'Reading', path: '/reading' },
     ]
 
     return (
-        <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-            isHomePage 
+        <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isHomePage
                 ? (isScrolled ? 'bg-background/80 backdrop-blur-md border-b border-border' : 'bg-transparent')
                 : 'bg-background/80 backdrop-blur-md border-b border-border'
-        }`}>
-            <div className={`max-w-6xl mx-auto px-4 sm:px-6 transition-all duration-300 ${
-                isExpanded ? 'py-2' : 'py-3 sm:py-4'
             }`}>
-                <div className={`flex items-center transition-all duration-300 ${
-                    isExpanded ? 'gap-4' : 'justify-between'
+            <div className={`max-w-6xl mx-auto px-4 sm:px-6 transition-all duration-300 ${isExpanded ? 'py-2' : 'py-3 sm:py-4'
                 }`}>
+                <div className={`flex items-center transition-all duration-300 ${isExpanded ? 'gap-4' : 'justify-between'
+                    }`}>
                     {/* profile image - always visible on non-home pages, or when expanded on home page */}
                     {(isExpanded || !isHomePage) && (
                         <Link to="/" className="shrink-0">
@@ -72,11 +70,10 @@ export function Navigation() {
                             />
                         </Link>
                     )}
-                    
+
                     {/* name and description - always visible on non-home pages, or when expanded on home page */}
-                    <div className={`transition-all duration-300 ${
-                        isExpanded || !isHomePage ? 'max-w-2xl opacity-100' : 'max-w-0 opacity-0 overflow-hidden'
-                    }`}>
+                    <div className={`transition-all duration-300 ${isExpanded || !isHomePage ? 'max-w-2xl opacity-100' : 'max-w-0 opacity-0 overflow-hidden'
+                        }`}>
                         <Link to="/" className="block">
                             <h2 className="text-base sm:text-lg font-bold gradient-text">Harshil Shah</h2>
                             <p className="text-xs sm:text-sm gradient-text font-normal truncate opacity-80">
@@ -84,14 +81,13 @@ export function Navigation() {
                             </p>
                         </Link>
                     </div>
-                    
+
                     {/* logo - only visible on home page when not expanded */}
                     {isHomePage && (
-                        <Link 
-                            to="/" 
-                            className={`font-bold gradient-text hover:opacity-80 transition-all duration-300 ${
-                                isExpanded ? 'hidden' : 'text-lg sm:text-xl'
-                            }`}
+                        <Link
+                            to="/"
+                            className={`font-bold gradient-text hover:opacity-80 transition-all duration-300 ${isExpanded ? 'hidden' : 'text-lg sm:text-xl'
+                                }`}
                         >
                             Harshil Shah
                         </Link>
@@ -103,11 +99,10 @@ export function Navigation() {
                             <Link
                                 key={item.path}
                                 to={item.path}
-                                className={`text-sm font-medium transition-colors hover:text-primary whitespace-nowrap ${
-                                    location.pathname === item.path 
-                                        ? 'text-primary' 
+                                className={`text-sm font-medium transition-colors hover:text-primary whitespace-nowrap ${location.pathname === item.path
+                                        ? 'text-primary'
                                         : 'text-foreground hover:opacity-80'
-                                }`}
+                                    }`}
                             >
                                 {item.name}
                             </Link>
@@ -154,11 +149,10 @@ export function Navigation() {
                                                 key={item.path}
                                                 to={item.path}
                                                 onClick={() => setIsMobileMenuOpen(false)}
-                                                className={`text-base font-medium transition-colors py-2 px-3 rounded-md ${
-                                                    location.pathname === item.path 
-                                                        ? 'text-primary bg-muted' 
+                                                className={`text-base font-medium transition-colors py-2 px-3 rounded-md ${location.pathname === item.path
+                                                        ? 'text-primary bg-muted'
                                                         : 'text-foreground hover:bg-muted'
-                                                }`}
+                                                    }`}
                                             >
                                                 {item.name}
                                             </Link>

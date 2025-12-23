@@ -7,14 +7,14 @@ export const ProjectModal = ({ project, onClose }) => {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       {/* Overlay */}
-      <div 
+      <div
         className="fixed inset-0 bg-black/50 backdrop-blur-sm transition-opacity"
         onClick={onClose}
         aria-hidden="true"
       />
-      
+
       {/* Modal */}
-      <div 
+      <div
         className="relative z-10 w-full max-w-4xl bg-card rounded-lg shadow-2xl overflow-hidden transform transition-all"
         onClick={(e) => e.stopPropagation()}
       >
@@ -27,7 +27,7 @@ export const ProjectModal = ({ project, onClose }) => {
         >
           <X className="h-5 w-5" />
         </Button>
-        
+
         <div className="grid md:grid-cols-2 gap-8">
           <div className="relative h-64 md:h-auto bg-muted flex items-center justify-center">
             <img
@@ -36,13 +36,13 @@ export const ProjectModal = ({ project, onClose }) => {
               className="w-full h-full object-contain"
             />
           </div>
-          
+
           <div className="p-6 overflow-y-auto max-h-[80vh] md:max-h-[70vh]">
             <h2 className="text-2xl font-bold mb-4 text-foreground">{project.title}</h2>
             <div className="flex flex-wrap gap-2 mb-4">
               {project.technologies?.map((tech) => (
-                <span 
-                  key={tech} 
+                <span
+                  key={tech}
                   className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary/10 text-primary"
                 >
                   {tech}
@@ -52,7 +52,7 @@ export const ProjectModal = ({ project, onClose }) => {
             <div className="prose prose-sm text-foreground/90">
               <p className="whitespace-pre-line">{project.description}</p>
             </div>
-            
+
             <div className="mt-6 flex gap-3 flex-wrap">
               {project.link && (
                 <Button asChild>
@@ -94,6 +94,37 @@ export const ProjectModal = ({ project, onClose }) => {
                 </Button>
               )}
             </div>
+
+            {project.recognition && (
+              <div className="mt-8 pt-6 border-t border-border">
+                <h3 className="text-xl font-bold mb-4 text-foreground">Links & Recognition</h3>
+                <ul className="space-y-3 list-disc pl-4 text-foreground/90">
+                  {project.recognition.map((item, index) => (
+                    <li key={index}>
+                      {item.url ? (
+                        <a href={item.url} target="_blank" rel="noopener noreferrer" className="hover:text-primary underline font-medium">
+                          {item.text}
+                        </a>
+                      ) : (
+                        <span className="font-medium">{item.text}</span>
+                      )}
+
+                      {item.links && (
+                        <ul className="list-[circle] pl-4 mt-2 space-y-2">
+                          {item.links.map((link, linkIndex) => (
+                            <li key={linkIndex}>
+                              <a href={link.url} target="_blank" rel="noopener noreferrer" className="hover:text-primary underline">
+                                {link.text}
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
-import { useState } from 'react'
-import { motion } from 'framer-motion'
-import { ArrowRight, Github, ExternalLink, Mail, MessageSquare, Brain, FlaskConical, Users, Calendar, PlayCircle } from 'lucide-react'
+import { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { ArrowRight, Github, ExternalLink, Mail, MessageSquare, Brain, FlaskConical, Users, Calendar, PlayCircle, Zap } from 'lucide-react'
 import riseTennisLogo from '@/assets/images/risetennis.png'
 import { Link } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
@@ -82,10 +82,22 @@ const featuredProjects = allProjects.filter(p => p.featured === true);
 
 export default function Home() {
   const [isLeadershipExpanded, setIsLeadershipExpanded] = useState(false)
+  const [isAboutExpanded, setIsAboutExpanded] = useState(false)
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
   const [selectedProject, setSelectedProject] = useState(null)
   const [showGitHubChart, setShowGitHubChart] = useState(false) // Hide by default since it's not working
   const { theme } = useTheme()
-  
+
+  // check for reduced motion preference
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+    setPrefersReducedMotion(mediaQuery.matches)
+    
+    const handleChange = (e) => setPrefersReducedMotion(e.matches)
+    mediaQuery.addEventListener('change', handleChange)
+    return () => mediaQuery.removeEventListener('change', handleChange)
+  }, [])
+
   // Function to determine if we should use dark mode chart
   const isDarkMode = () => {
     if (theme === 'dark') return true
@@ -94,11 +106,11 @@ export default function Home() {
     }
     return false
   }
-  
+
   // Get appropriate chart URL based on theme
   const getChartUrl = () => {
     const timestamp = new Date().toISOString().split('T')[0]; // Cache-busting with current date
-    return isDarkMode() 
+    return isDarkMode()
       ? `https://ghchart.rshah.org/39d353/har5h1l?timestamp=${timestamp}` // GitHub's dark mode green
       : `https://ghchart.rshah.org/har5h1l?timestamp=${timestamp}` // Default green for light mode
   }
@@ -138,10 +150,52 @@ export default function Home() {
               </div>
               <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4">Hi, I'm Harshil...</h1>
               <p className="text-base sm:text-lg leading-relaxed mb-4 sm:mb-6">
-                I'm a student from the Bay Area in California passionate about the development of more intelligent AI and its application to solve critical problems. My research interests are interdisciplinary, including <strong>medicine</strong>, <strong>biology</strong>, and <strong>neuroscience</strong>. I'm also an active member of the <strong>Active Inference</strong> community. Other than research, I love <strong>debate</strong>, <strong>mathematics</strong>, <strong>reading</strong>, and <strong>tennis</strong>. I consider myself a life-long learner because I'm constantly seeking new knowledge and skills to expand my understanding of the world.
+                I'm a student from the Bay Area in California passionate about the development of more intelligent AI and its application to solve critical problems. I'm part of the <strong>Active Inference</strong> community, where I'm conducting research in <strong>autonomous drone navigation</strong> and <strong>multi-agent learning systems</strong>. I've also built projects in other disciplines, including <strong>medicine</strong>, <strong>biology</strong>, and <strong>neuroscience</strong>. Beyond research, I love <strong>debate</strong>, <strong>mathematics</strong>, <strong>reading</strong>, and <strong>tennis</strong>. I consider myself a life-long learner because I'm constantly seeking new knowledge and skills to expand my understanding of the world.
               </p>
+              <Button
+                onClick={() => {
+                  const element = document.getElementById('more-about-me')
+                  if (element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                  }
+                }}
+                className="mt-2"
+              >
+                More About Me
+              </Button>
             </motion.div>
           </div>
+        </div>
+      </section>
+
+      {/* Now Callout Box */}
+      <section className="pb-8 sm:pb-12 bg-background">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          >
+            <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
+              <Zap className="h-6 w-6 sm:h-8 sm:w-8 text-primary" />
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">What I'm doing now</h2>
+            </div>
+
+            <div className="border border-border rounded-lg p-6 bg-card/50">
+              <p className="mb-4 text-foreground/80">Grinding during Winter Break</p>
+              <ul className="list-disc pl-5 mb-4 space-y-1 text-foreground/80">
+                <li>
+                  <strong>DroneSuite</strong> — seeking reviewers with Active Inference experience
+                </li>
+                <li>
+                  <strong>Multi-agent social learning (trust + ToM)</strong> — seeking mentors/feedback
+                </li>
+              </ul>
+              <p className="text-foreground/90 font-medium">
+                If you can review code or give feedback, <a href="mailto:28hshah@gmail.com" className="text-primary hover:underline">contact me</a>.
+              </p>
+            </div>
+          </motion.div>
         </div>
       </section>
 
@@ -158,7 +212,7 @@ export default function Home() {
               <Calendar className="h-6 w-6 sm:h-8 sm:w-8 text-primary" />
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">Recent Activity</h2>
             </div>
-            
+
             <div className="space-y-4">
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
@@ -176,11 +230,11 @@ export default function Home() {
                       Presented "<a href="https://www.shahmaitraresearch.com/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Combining Hierarchical Active Inference with Affordance Theory for Scalable Policy Selection in Autonomous Drone Navigation</a>" (co-authored with Satyaki Maitra) at the <a href="https://www.activeinference.institute/symposium" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">5th Annual Active Inference Symposium</a>.
                     </p>
                     <div className="flex flex-wrap gap-2">
-                      <Button 
-                        size="sm" 
+                      <Button
+                        size="sm"
                         variant="outline"
                         onClick={() => {
-                          const droneProject = allProjects.find(p => 
+                          const droneProject = allProjects.find(p =>
                             p.title === "Combining Hierarchical Active Inference with Affordance Theory for Scalable Policy Selection in Autonomous Drone Navigation"
                           )
                           setSelectedProject(droneProject)
@@ -190,15 +244,15 @@ export default function Home() {
                         <span>Learn More</span>
                         <ArrowRight className="h-3 w-3 sm:h-4 sm:w-4" />
                       </Button>
-                      <Button 
-                        size="sm" 
+                      <Button
+                        size="sm"
                         variant="outline"
                         asChild
                         className="inline-flex items-center gap-1"
                       >
-                        <a 
-                          href="https://www.youtube.com/live/1q40Jqk1HYs?si=5W1C52U7gNkRb2l0&t=36000" 
-                          target="_blank" 
+                        <a
+                          href="https://www.youtube.com/live/1q40Jqk1HYs?si=5W1C52U7gNkRb2l0&t=36000"
+                          target="_blank"
                           rel="noopener noreferrer"
                         >
                           <span>Watch Recording</span>
@@ -224,18 +278,18 @@ export default function Home() {
                   <div className="flex-1">
                     <p className="text-sm sm:text-base text-foreground mb-3">
                       Accepted to present at{' '}
-                      <a 
-                        href="https://iwaiworkshop.github.io/" 
-                        target="_blank" 
+                      <a
+                        href="https://iwaiworkshop.github.io/"
+                        target="_blank"
                         rel="noopener noreferrer"
                         className="text-primary hover:underline font-medium"
                       >
                         IWAI (International Workshop on Active Inference)
                       </a>
                       {' '}for October 15-17! My presentation on the 17th will cover{' '}
-                      <a 
-                        href="https://shahmaitraresearch.com/" 
-                        target="_blank" 
+                      <a
+                        href="https://shahmaitraresearch.com/"
+                        target="_blank"
                         rel="noopener noreferrer"
                         className="text-primary hover:underline"
                       >
@@ -243,11 +297,11 @@ export default function Home() {
                       </a>
                       {' '}(co-authored with Satyaki Maitra).
                     </p>
-                    <Button 
-                      size="sm" 
+                    <Button
+                      size="sm"
                       variant="outline"
                       onClick={() => {
-                        const droneProject = allProjects.find(p => 
+                        const droneProject = allProjects.find(p =>
                           p.title === "Combining Hierarchical Active Inference with Affordance Theory for Scalable Policy Selection in Autonomous Drone Navigation"
                         )
                         setSelectedProject(droneProject)
@@ -264,7 +318,7 @@ export default function Home() {
       </section>
 
       {/* Bio Section */}
-      <section className="py-8 sm:py-12 bg-background">
+      <section id="more-about-me" className="py-8 sm:py-12 bg-background">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -274,15 +328,139 @@ export default function Home() {
             className="mb-8 sm:mb-12"
           >
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6">More About Me</h2>
-            <p className="text-base sm:text-lg text-foreground/80 mb-3 sm:mb-4 leading-relaxed">
-              I've been learning and applying Active Inference for around a year now (big thanks to <a href="https://activeinference.org/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Active Inference Institute</a> & Dr. Friedman). Beyond that, I've been working with mainstream AI, including machine learning models and LLMs. I'm a contributor to <a href="https://www.medarc.ai/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">MedArc's fMRI foundational model</a> and built a simple app called <Link to="/projects#wellnessgrid" className="text-primary hover:underline">WellnessGrid</Link> to centralize healthcare information and support chronic disease patients. Recently, I've been getting more involved with GNNs for computational biology research.
-            </p>
-            <p className="text-base sm:text-lg text-foreground/80 mb-3 sm:mb-4 leading-relaxed">
-              Other than research, I love competing in public forum debate (3rd year), playing tennis (6 years), <Link to="/reading" className="text-primary hover:underline">reading</Link>, experimenting with recipes and drinks (huge chocolate lover), listening to podcasts, and more. I've built a nonprofit called <a href="https://risetennis.org/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">R.I.S.E. Tennis</a>, where we aim to spread tennis to underserved communities.
-            </p>
-            <p className="text-base sm:text-lg text-foreground/80 leading-relaxed">
-              Mathematics has been a huge part of my life and I love learning more; it teaches you to think really well. I love interdisciplinary thinking in every aspect of my life; I enjoy learning about topics like psychology, how the brain works, how the world works, and more. Currently, I think I'll become a research scientist or entrepreneur one day.
-            </p>
+            
+            {/* Content area with cross-fade animation */}
+            <div className="relative min-h-[200px]">
+              <AnimatePresence mode="wait" initial={false}>
+                {!isAboutExpanded ? (
+                  <motion.div
+                    key="collapsed"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{
+                      duration: prefersReducedMotion ? 0.01 : 0.3,
+                      ease: 'easeInOut'
+                    }}
+                  >
+                    <p className="text-base sm:text-lg text-foreground/80 mb-3 sm:mb-4 leading-relaxed">
+                      I've been learning and applying Active Inference for around a year now (big thanks to <a href="https://activeinference.org/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Active Inference Institute</a> & my mentor Dr. Friedman). Beyond that, I've been working with mainstream AI, including machine learning models and LLMs. I'm a contributor to <a href="https://www.medarc.ai/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">MedArc's fMRI foundational model</a> and built a simple app called <Link to="/projects#wellnessgrid" className="text-primary hover:underline">WellnessGrid</Link> to centralize healthcare information and support chronic disease patients. Recently, I've been getting more involved with GNNs for computational biology research.
+                    </p>
+                    <p className="text-base sm:text-lg text-foreground/80 mb-3 sm:mb-4 leading-relaxed">
+                      Other than research, I love competing in public forum debate (3rd year), playing tennis (6 years) for my school team, <Link to="/reading" className="text-primary hover:underline">reading</Link>, experimenting with recipes and drinks (huge chocolate lover), listening to podcasts, and more. I'm the founder and president of <a href="https://risetennis.org/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">R.I.S.E. Tennis</a>, a nonprofit organization where we aim to spread tennis to everyone.
+                    </p>
+                    <p className="text-base sm:text-lg text-foreground/80 leading-relaxed">
+                      Mathematics has been a huge part of my life and I love learning more; it teaches you to think really well. I love interdisciplinary thinking in every aspect of my life; I enjoy learning about topics like psychology, how the brain works, how the world works, and more. One day, I hope to be a research scientist.
+                    </p>
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="expanded"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{
+                      duration: prefersReducedMotion ? 0.01 : 0.3,
+                      ease: 'easeInOut'
+                    }}
+                    className="space-y-6 sm:space-y-8 text-base sm:text-lg text-foreground/80 leading-relaxed"
+                  >
+                    {/* Why Research */}
+                    <div>
+                      <h3 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4 text-foreground">Why Research</h3>
+                      <motion.p
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: prefersReducedMotion ? 0.01 : 0.6 }}
+                      >
+                        There's a strong force pulling me toward research. My favorite moments are unglamorous: I'm pacing in my room, sketching the same system for the millionth time, realizing one assumption is wrong, and redesigning the architecture until it finally clicks. But those are the moments I love. Research is how I think. It's how I turn confusion into something I can test, refine, and trust.
+                      </motion.p>
+                    </div>
+
+                    {/* What I Keep Coming Back To */}
+                    <div>
+                      <h3 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4 text-foreground">What I Keep Coming Back To</h3>
+                      <motion.p
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: prefersReducedMotion ? 0.01 : 0.6, delay: 0.1 }}
+                      >
+                        I'm obsessed with intelligence. Real intelligence. I mean the kind that survives real life. The kind that still works when the lighting changes, the data is messy, and you don't have the full picture. I'm drawn to messy reality. Noise, missing information, shifting conditions. The stuff most "clean" models pretend isn't there. I learned early that smooth behavior in a perfect sim can be a lie, and that real intelligence has to include the ability to say, "I don't know yet."
+                        <br /><br />
+                        That's why I gravitated toward Active Inference. It doesn't treat uncertainty as something to smooth away. It treats it as something you model, carry, and act with. Once I started thinking that way in research, I realized I'd been chasing the same principle everywhere. Debate rounds. Tennis matches. Chemistry labs. Testing, updating, and trying to be wrong in useful ways.
+                      </motion.p>
+                    </div>
+
+                    {/* How I Move Through The World */}
+                    <div>
+                      <h3 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4 text-foreground">How I Move Through The World</h3>
+                      <motion.p
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: prefersReducedMotion ? 0.01 : 0.6, delay: 0.2 }}
+                      >
+                        I'm very direction-driven. I usually know what I'm trying to become, and I'm stubborn about aligning my habits with that direction. That's why I love systems. Writing things down. Refining plans. Tracking what changed and why. My Notion space, Harshil's Aesthetic Cafe, is basically an embedded representation of my personality. Part organization. Part curiosity museum. Part "how do I design a life that makes sense." It's where I collect ideas, connect themes across fields, and turn vague motivation into concrete next steps.
+                      </motion.p>
+                    </div>
+
+                    {/* What Keeps Me Sharp */}
+                    <div>
+                      <h3 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4 text-foreground">What Keeps Me Sharp</h3>
+                      <motion.p
+                        className="mb-3"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: prefersReducedMotion ? 0.01 : 0.6, delay: 0.3 }}
+                      >
+                        Debate and tennis are my reality checks. They reward the same thing I want in research. Adaptation under pressure. I'm in my third year of competing in Public Forum debate, and I love the grind. I love growing with my partner. I started in middle school after being exposed to an amazing debate coach, and I got hooked. Tournament after tournament, learning from other teams, learning from losses, rebuilding my thinking. Debate taught me to build arguments that survive scrutiny and to name confusion instead of hiding it.
+                      </motion.p>
+                      <motion.p
+                        className="mb-3"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: prefersReducedMotion ? 0.01 : 0.6, delay: 0.4 }}
+                      >
+                        I've been playing tennis for six years. Tennis is one of the hardest things I've ever done. It taught me resilience. Reset after a mistake. Stay present. Keep refining. I play on my JV team and recreationally, and I love improving for the sake of improving because it's something I want to prove to myself.
+                      </motion.p>
+                      <motion.p
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: prefersReducedMotion ? 0.01 : 0.6, delay: 0.5 }}
+                      >
+                        But a huge part of what keeps me sharp is quieter. I genuinely love studying. I'll read research papers for fun. I'll chase new math concepts until they finally make sense. I'll go down rabbit holes on ideas that feel "too hard" at first because the moment they become clear is addictive. That habit of learning is the engine behind everything I do. Slow at first, then suddenly fast. Disciplined and curious.
+                      </motion.p>
+                    </div>
+
+                    {/* My Goals */}
+                    <div>
+                      <h3 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4 text-foreground">My Goals</h3>
+                      <motion.p
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: prefersReducedMotion ? 0.01 : 0.6, delay: 0.6 }}
+                      >
+                        One day, I want to have full autonomy over my life. I want to be a researcher I'd look up to, building systems that actually hold up in messy reality. I want a life that's full, not just impressive. A family. Close friends I still make time for. Days that still include reading, thinking, and exploring new directions in my work. I want to still be playing tennis, still learning new things, still moving forward. Enjoying life while staying curious enough to keep becoming someone new.
+                      </motion.p>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            {/* CTA Button */}
+            <div className="mt-4 sm:mt-6">
+              <Button
+                onClick={() => {
+                  setIsAboutExpanded(!isAboutExpanded)
+                }}
+                variant={isAboutExpanded ? "outline" : "default"}
+                className="text-base sm:text-lg"
+                aria-expanded={isAboutExpanded}
+                aria-label={isAboutExpanded ? 'Collapse expanded about section' : 'Expand about section'}
+              >
+                {isAboutExpanded ? 'Collapse' : 'Still curious?'}
+              </Button>
+            </div>
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -293,13 +471,13 @@ export default function Home() {
           >
             <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row flex-wrap justify-center gap-4 sm:gap-6 px-4 sm:px-0">
               {/* Active Inference Card */}
-              <Link 
-                to="/projects?filter=Active+Inference" 
+              <Link
+                to="/projects?filter=Active+Inference"
                 className="group flex flex-col items-center text-center gap-3 sm:gap-4 rounded-xl border bg-card text-card-foreground p-4 sm:p-6 transition-all duration-300 shadow-sm hover:shadow-lg hover:border-primary hover:-translate-y-1 w-full sm:max-w-xs lg:max-w-none lg:w-[calc(33.333%-1.5rem)] flex-grow"
               >
                 <h3 className="text-lg font-semibold text-card-foreground mb-1">Active Inference</h3>
                 <p className="text-sm text-foreground/80">
-                  Applied this neuroscience-based AI to autonomous navigation and am currently working on real-world drones.
+                  Applied this neuroscience-based AI to autonomous navigation and am currently working on real-world drones and multi-agent social learning systems with theory of mind.
                 </p>
                 <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-muted group-hover:bg-primary/10 text-primary flex-shrink-0 transition-colors mt-auto">
                   <Brain size={28} />
@@ -307,18 +485,17 @@ export default function Home() {
               </Link>
 
               {/* Biomedicine Card */}
-              <Link 
-                to="/projects?filter=Biomedicine" 
-                className="group flex flex-col items-center text-center gap-3 sm:gap-4 rounded-xl border bg-card text-card-foreground p-4 sm:p-6 transition-all duration-300 shadow-sm hover:shadow-lg hover:border-primary hover:-translate-y-1 w-full sm:max-w-xs lg:max-w-none lg:w-[calc(33.333%-1.5rem)] flex-grow"
-              >
-                <h3 className="text-lg font-semibold text-card-foreground mb-1">Biomedicine Applications</h3>
+              <div className="group flex flex-col items-center text-center gap-3 sm:gap-4 rounded-xl border bg-card text-card-foreground p-4 sm:p-6 transition-all duration-300 shadow-sm hover:shadow-lg hover:border-primary hover:-translate-y-1 w-full sm:max-w-xs lg:max-w-none lg:w-[calc(33.333%-1.5rem)] flex-grow">
+                <Link to="/projects?filter=Biomedicine" className="text-lg font-semibold text-card-foreground mb-1 hover:text-primary transition-colors">
+                  Biomedicine Applications
+                </Link>
                 <p className="text-sm text-foreground/80">
-                  Passionate about AI in healthcare and biology. Currently building an app to centralize healthcare information and support chronic disease patients.
+                  Passionate about AI in healthcare and biology. Built <Link to="/projects#wellnessgrid" className="text-primary hover:underline">WellnessGrid</Link> to centralize healthcare information and support chronic disease patients. Also researching signed GNNs on drug and disease representations.
                 </p>
                 <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-muted group-hover:bg-primary/10 text-primary flex-shrink-0 transition-colors mt-auto">
                   <FlaskConical size={28} />
                 </div>
-              </Link>
+              </div>
 
               {/* Leadership Card */}
               <div className="group flex flex-col items-center text-center gap-3 sm:gap-4 rounded-xl border bg-card text-card-foreground p-4 sm:p-6 transition-all duration-300 shadow-sm hover:shadow-lg hover:border-primary hover:-translate-y-1 w-full sm:max-w-xs lg:max-w-none lg:w-[calc(33.333%-1.5rem)] flex-grow">
@@ -326,7 +503,7 @@ export default function Home() {
                 <p className="text-sm text-foreground/80">
                   {isLeadershipExpanded ? (
                     <>
-                      President and founder of numerous organizations like <a href="https://risetennis.org/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">R.I.S.E. Tennis</a>, leading elementary school debate program for Fremont Debate Academy, and Activities Coordinator for school Neuroscience Club.{' '}
+                      President and founder of <a href="https://risetennis.org/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">R.I.S.E. Tennis</a>, leading elementary school debate program for Fremont Debate Academy, President of school's AI Club, and Activities Coordinator for school Neuroscience Club.{' '}
                       <button onClick={() => setIsLeadershipExpanded(false)} className="text-primary/80 hover:text-primary font-medium">(less)</button>
                     </>
                   ) : (
@@ -366,48 +543,48 @@ export default function Home() {
               .sort((a, b) => new Date(parseDate(b.date)) - new Date(parseDate(a.date)))
               .slice(0, 3)
               .map((article, index) => (
-              <motion.div
-                key={article.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="group block bg-card border border-border rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300"
-              >
-                <a
-                  href={article.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block"
+                <motion.div
+                  key={article.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="group block bg-card border border-border rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300"
                 >
-                  <div className="aspect-video overflow-hidden">
-                    <img
-                      src={article.image}
-                      alt={article.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-                  <div className="p-6">
-                    <div className="flex flex-wrap gap-2 mb-3">
-                      {article.tags.map((tag) => (
-                        <Badge key={tag} variant="outline" className="text-xs">
-                          {tag}
-                        </Badge>
-                      ))}
+                  <a
+                    href={article.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block"
+                  >
+                    <div className="aspect-video overflow-hidden">
+                      <img
+                        src={article.image}
+                        alt={article.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
                     </div>
-                    <h3 className="text-lg font-semibold mb-2 group-hover:text-primary transition-colors line-clamp-2">
-                      {article.title}
-                    </h3>
-                    <p className="text-sm text-foreground/80 mb-3 line-clamp-2">
-                      {article.description}
-                    </p>
-                    <p className="text-xs text-foreground/80">
-                      {article.date}
-                    </p>
-                  </div>
-                </a>
-              </motion.div>
-            ))}
+                    <div className="p-6">
+                      <div className="flex flex-wrap gap-2 mb-3">
+                        {article.tags.map((tag) => (
+                          <Badge key={tag} variant="outline" className="text-xs">
+                            {tag}
+                          </Badge>
+                        ))}
+                      </div>
+                      <h3 className="text-lg font-semibold mb-2 group-hover:text-primary transition-colors line-clamp-2">
+                        {article.title}
+                      </h3>
+                      <p className="text-sm text-foreground/80 mb-3 line-clamp-2">
+                        {article.description}
+                      </p>
+                      <p className="text-xs text-foreground/80">
+                        {article.date}
+                      </p>
+                    </div>
+                  </a>
+                </motion.div>
+              ))}
           </div>
 
           <motion.div
@@ -441,7 +618,7 @@ export default function Home() {
           >
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6">Featured Projects</h2>
           </motion.div>
-          
+
           <div className="grid md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 mb-8 sm:mb-12">
             {featuredProjects.map((project, index) => (
               <motion.div
@@ -450,86 +627,31 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="group block bg-card border border-border rounded-lg overflow-hidden hover:shadow-lg transition-all duration-300 h-full"
+                className="h-full"
               >
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold mb-3 group-hover:text-primary transition-colors line-clamp-2">
-                    {project.title}
-                  </h3>
-                  <p className="text-sm text-foreground/80 mb-4 line-clamp-3">
-                    {project.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.technologies.slice(0, 3).map((tech) => (
-                      <Badge key={tech} variant="outline" className="text-xs">
-                        {tech}
-                      </Badge>
-                    ))}
-                    {project.technologies.length > 3 && (
-                      <Badge variant="outline" className="text-xs">
-                        +{project.technologies.length - 3} more
-                      </Badge>
-                    )}
-                  </div>
-                  <div className="flex items-center justify-between pt-2 border-t border-border">
-                    <span className="text-xs text-foreground/60">
-                      {project.date}
-                    </span>
-                    <div className="flex gap-2 flex-wrap">
-                      {project.link && (
-                        <Button size="sm" asChild>
-                          <a 
-                            href={project.link} 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            className="flex items-center gap-1 text-xs"
-                          >
-                            <ExternalLink className="h-3.5 w-3.5" />
-                            Research
-                          </a>
-                        </Button>
-                      )}
-                      {project.video && (
-                        <Button size="sm" asChild>
-                          <a 
-                            href={project.video} 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            className="flex items-center gap-1 text-xs"
-                          >
-                            <PlayCircle className="h-3.5 w-3.5" />
-                            Video
-                          </a>
-                        </Button>
-                      )}
-                      {project.github && project.github !== '#' && (
-                        <Button variant="outline" size="sm" asChild>
-                          <a 
-                            href={project.github} 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            className="flex items-center gap-1 text-xs"
-                          >
-                            <Github className="h-3.5 w-3.5" />
-                            Code
-                          </a>
-                        </Button>
-                      )}
-                      <Button size="sm" asChild variant="outline">
-                        <Link 
-                          to={`/projects?filter=${encodeURIComponent(project.category)}#${project.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')}`}
-                          className="text-xs"
-                        >
-                          Details
-                        </Link>
-                      </Button>
-                    </div>
-                  </div>
-                </div>
+                <ProjectCard
+                  project={project}
+                  onShowLinks={(p) => setSelectedProject(p)}
+                >
+                  <Button size="sm" asChild variant="outline">
+                    <Link
+                      to={
+                        project.title.includes("DroneSuite")
+                          ? "/research#dronesuite"
+                          : project.title.includes("An Active Inference Approach")
+                          ? "/research#active-inference-approach"
+                          : `/projects?filter=${encodeURIComponent(project.category)}#${project.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')}`
+                      }
+                      className="text-xs"
+                    >
+                      Details
+                    </Link>
+                  </Button>
+                </ProjectCard>
               </motion.div>
             ))}
           </div>
-          
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -558,10 +680,10 @@ export default function Home() {
               viewport={{ once: true }}
             >
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6">My GitHub Contributions</h2>
-              <img 
-                src={getChartUrl()} 
-                alt="har5h1l's GitHub chart" 
-                className="w-full max-w-2xl" 
+              <img
+                src={getChartUrl()}
+                alt="har5h1l's GitHub chart"
+                className="w-full max-w-2xl"
               />
             </motion.div>
           </div>
@@ -569,7 +691,7 @@ export default function Home() {
       )}
 
       {/* Contact Information */}
-      <section className="py-8 sm:py-12 bg-background">
+      <section id="contact" className="py-8 sm:py-12 bg-background">
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -649,9 +771,9 @@ export default function Home() {
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 text-foreground hover:text-primary transition-colors"
                 >
-                  <img 
-                    src={riseTennisLogo} 
-                    alt="R.I.S.E. Tennis" 
+                  <img
+                    src={riseTennisLogo}
+                    alt="R.I.S.E. Tennis"
                     className="h-5 w-5 flex-shrink-0 object-contain"
                   />
                   <span>R.I.S.E. Tennis</span>

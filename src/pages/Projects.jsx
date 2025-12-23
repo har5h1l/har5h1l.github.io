@@ -58,9 +58,9 @@ export default function Projects() {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-8 max-w-[900px]">
         <h1 className="text-4xl font-bold mb-8">Projects</h1>
-        
+
         {/* Featured Section */}
         {featuredProjects.length > 0 && (
           <section className="mb-12">
@@ -79,8 +79,7 @@ export default function Projects() {
                 >
                   <ProjectCard
                     project={project}
-                    onMoreInfo={handleMoreInfo}
-                    isActInf={project.category === 'Active Inference'}
+                    onShowLinks={handleMoreInfo}
                   />
                 </motion.div>
               ))}
@@ -105,7 +104,7 @@ export default function Projects() {
         {/* Regular Projects Section */}
         <section>
           <div className="flex items-center gap-3 mb-6">
-            <h2 className="text-2xl font-semibold">
+            <h2 className="text-3xl font-bold">
               {selectedCategory === 'All' ? 'All Projects' : selectedCategory}
             </h2>
           </div>
@@ -121,8 +120,7 @@ export default function Projects() {
               >
                 <ProjectCard
                   project={project}
-                  onMoreInfo={handleMoreInfo}
-                  isActInf={project.category === 'Active Inference'}
+                  onShowLinks={handleMoreInfo}
                 />
               </motion.div>
             ))}

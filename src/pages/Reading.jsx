@@ -1,6 +1,8 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
+import { Search } from 'lucide-react'
 
 const finishedBooks = [
   {
@@ -135,9 +137,9 @@ const BookCard = ({ book, index = 0, isCurrent = false }) => (
     whileInView={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.5, delay: index * 0.1 }}
     viewport={{ once: true }}
-    className="bg-card border border-border rounded-lg p-6"
+    className="bg-card border border-border rounded-lg p-6 flex flex-col h-full"
   >
-    <div className="flex items-start">
+    <div className="flex items-start h-full">
       <div className="flex-grow">
         <h3 className="text-lg font-semibold text-foreground">{book.title}</h3>
         <p className="text-foreground/80 text-sm mb-2">by {book.author}</p>
@@ -150,7 +152,7 @@ const BookCard = ({ book, index = 0, isCurrent = false }) => (
         </div>
       </div>
       {isCurrent && (
-        <Badge variant="default" className="ml-2">
+        <Badge variant="default" className="ml-2 flex-shrink-0">
           Currently Reading
         </Badge>
       )}
@@ -159,12 +161,26 @@ const BookCard = ({ book, index = 0, isCurrent = false }) => (
 )
 
 export default function Reading() {
+  const [searchTerm, setSearchTerm] = useState('')
+
+  const filteredFinishedBooks = finishedBooks.filter(book => {
+    const searchLower = searchTerm.toLowerCase()
+    return (
+      book.title.toLowerCase().includes(searchLower) ||
+      book.author.toLowerCase().includes(searchLower) ||
+      book.tags.some(tag => tag.toLowerCase().includes(searchLower))
+    )
+  })
+
   return (
     <div className="min-h-screen bg-background">
-      <div className="container mx-auto px-4 py-8">
-        <h1 className="text-4xl font-bold mb-2">Reading List</h1>
-        <p className="text-muted-foreground mb-8">Documenting my reading journey</p>
-        
+      <div className="container mx-auto px-4 py-8 max-w-[900px]">
+        <div className="mb-8">
+          <h1 className="text-4xl font-bold mb-2">Reading List</h1>
+          <p className="text-muted-foreground">Documenting my reading journey</p>
+          <p className="text-xs text-muted-foreground mt-2 font-medium">Last updated: Dec 2025</p>
+        </div>
+
         {/* Currently Reading */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -189,11 +205,30 @@ export default function Reading() {
           transition={{ duration: 0.5, delay: 0.1 }}
           className="mb-12"
         >
-          <h2 className="text-2xl font-semibold mb-6">Books I've Finished</h2>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+            <h2 className="text-2xl font-semibold">Books I've Finished</h2>
+            <div className="relative w-full sm:w-64">
+              <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+              <input
+                type="text"
+                placeholder="Filter by title, author, or tag..."
+                className="w-full bg-background border border-border rounded-md pl-9 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+            </div>
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {finishedBooks.map((book, index) => (
-              <BookCard key={book.title} book={book} index={index} />
-            ))}
+            {filteredFinishedBooks.length > 0 ? (
+              filteredFinishedBooks.map((book, index) => (
+                <BookCard key={book.title} book={book} index={index} />
+              ))
+            ) : (
+              <div className="col-span-full text-center py-8 text-muted-foreground">
+                No books found matching "{searchTerm}"
+              </div>
+            )}
           </div>
         </motion.div>
         {/* Reading List */}

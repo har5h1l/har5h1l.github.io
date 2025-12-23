@@ -8,21 +8,76 @@ export const allProjects = [
     title: "An Active Inference Approach to Autonomous Navigation",
     description: "This project compares active inference algorithms to Deep Q-Networks (DQNs) in a realistic 3D robotics environment called CoppeliaSim. The research explores how active inference can improve navigation performance in complex, uncertain environments. This project won 2nd place in Computational Biology at the Alameda County Science and Engineering Fair.",
     image: actinfImage,
-    technologies: ["Active Inference", "Python", "Deep RL", "Robotics", "CoppeliaSim"],
+    technologies: ["Active Inference", "Python", "Deep RL", "Robotics", "CoppeliaSim", "Research"],
     github: "https://github.com/JojiGitHub/Active-Inference-2025",
-    category: "Active Inference"
+    category: "Active Inference",
+    research: true,
+    date: "May 2025",
+    researchQuestions: [
+      "How does Active Inference compare with Reinforcement Learning (specifically DQN) in unknown environments, regarding: \n\t– avoiding myopic behavior? \n\t– balancing exploration and exploitation? \n\t– mitigating uncertainty?",
+      "How does the Free Energy Principle contribute to efficient navigation in unknown or changing environments?"
+    ],
+    recognition: [
+      { text: "2nd in Comp Bio @ ACSEF 2025" },
+      {
+        text: "Active Inference Institute Features",
+        links: [
+          { text: "Jan 2025 Newsletter", url: "https://activeinferenceinstitute.substack.com/p/january-2025-newsletter-active-inference" },
+          { text: "Mar 2025 Newsletter", url: "https://activeinferenceinstitute.substack.com/p/march-2025-newsletter-active-inference" },
+          { text: "Apr 2025 Newsletter", url: "https://activeinferenceinstitute.substack.com/p/april-newsletter-2025-newsletter" },
+          { text: "Quarterly Roundtable", url: "https://www.youtube.com/live/aEe8y9Ebs10?si=jMUqsJ8YDQ0rBfKN&t=2689" }
+        ]
+      },
+      { text: "Project Presentation Slides", url: "https://github.com/har5h1l/Active-Inference-AutoNav-2025/blob/main/An%20Active%20Inference%20Approach%20to%20Autonomus%20Navigation%20Trifold%20copy.pdf" }
+    ]
   },
   {
-    title: "Combining Hierarchical Active Inference with Affordance Theory for Scalable Policy Selection in Autonomous Drone Navigation",
-    description: "This research integrates hierarchical active inference with affordance theory to address three critical challenges in autonomous drone navigation: managing continuous environments in hierarchical planning, connecting abstract reasoning to real-world perception, and maintaining computational efficiency for edge computing. Our framework introduces a latent suitability state that represents how the environment affords safety and navigability, intelligently filtering viable waypoints while bridging low-level perception with high-level planning. The system balances exploration with goal-directed behavior, tested in Microsoft AirSim with plans for real-world implementation. Presented at IWAI 2025 and the 5th Annual Active Inference Symposium. Co-authored with Satyaki Maitra. Code will be open-sourced soon.",
+    title: "DroneSuite",
+    description: "**Combining Hierarchical Active Inference with Affordance Theory for Scalable Policy Selection in Autonomous Drone Navigation**\n\nThis research integrates hierarchical active inference with affordance theory to address autonomous drone navigation. Our framework introduces a latent suitability state that represents how the environment affords safety and navigability, bridging low-level perception with high-level planning. The system balances exploration with goal-directed behavior, effectively filtering viable waypoints for scalable policy selection.",
     image: droneImage,
     technologies: ["Active Inference", "Julia", "Python", "Robotics", "Drones"],
     github: "https://github.com/har5h1l/Hierarchical-Active-Inference-for-Autonomous-Drone-Navigation-in-Microsoft-AirSim",
     link: "https://shahmaitraresearch.com/",
     category: "Active Inference",
-    date: "Nov 2025",
+    research: true,
+    researchQuestions: [
+      "How can hierarchical active inference manage continuous environmental states for scalable planning?",
+      "How does affordance theory enable efficient bridging of low-level perception and high-level abstract reasoning?",
+      "Can latent suitability states effectively filter viable waypoints to improve computational efficiency on edge devices?",
+      "How does the proposed framework robustness transfer from simulation (AirSim) to real-world drone constraints?"
+    ],
+
     featured: true,
-    video: "https://www.youtube.com/live/1q40Jqk1HYs?si=5W1C52U7gNkRb2l0&t=36000"
+    wip: true,
+    video: "https://www.youtube.com/live/1q40Jqk1HYs?si=5W1C52U7gNkRb2l0&t=36000",
+    recognition: [
+      { text: "Shah-Maitra Research Website", url: "https://www.shahmaitraresearch.com/" },
+      {
+        text: "IWAI 2025",
+        links: [
+          { text: "Workshop Page", url: "https://iwaiworkshop.github.io/" },
+          { text: "OpenReview (Abstract/Posters)", url: "https://openreview.net/group?id=IWAI/2025/Workshop#tab-recent-activity" }
+        ]
+      },
+      {
+        text: "5th Active Inference Symposium",
+        links: [
+          { text: "Symposium Page", url: "https://www.activeinference.institute/symposium" },
+          { text: "Presentation Recording", url: "https://www.youtube.com/watch?v=1q40Jqk1HYs&t=36000s" },
+          { text: "Zenodo", url: "https://zenodo.org/records/17575211" }
+        ]
+      },
+      {
+        text: "Institute Features",
+        links: [
+          { text: "Apr 2025 Newsletter", url: "https://activeinferenceinstitute.substack.com/p/april-newsletter-2025-newsletter" },
+          { text: "Sep 2025 Newsletter", url: "https://activeinferenceinstitute.substack.com/p/september-2025-newsletter-active" },
+          { text: "Livestream Highlight 1", url: "https://www.youtube.com/live/-cKpXSZLvMQ?si=R4RpvNs9JmTdVltQ&t=1741" },
+          { text: "Livestream Highlight 2", url: "https://www.youtube.com/live/PPKFlARc7gY?si=lbreH9qcy3G6qlUA&t=1301" },
+          { text: "Livestream Highlight 3", url: "https://www.youtube.com/live/09FfbL1YYOI?si=GkmaxYor17nrINOt&t=1267" }
+        ]
+      }
+    ]
   },
   {
     title: "Nutritional Behavior Analytics",
@@ -30,7 +85,8 @@ export const allProjects = [
     image: AIvenndiagramImage,
     technologies: ["Data Analysis", "Statistics", "Python", "Nutrition"],
     github: "https://github.com/har5h1l/NutritionProject",
-    category: "Biomedicine"
+    category: "Biomedicine",
+    date: "2024"
   },
 
   {
@@ -38,7 +94,9 @@ export const allProjects = [
     description: "Currently developing a recommendation system to provide personalized nutritional guidance. This ongoing project involves researching neural network architectures specialized for recommendation systems, with plans to deploy as a user-friendly application.",
     image: AIvenndiagramImage,
     technologies: ["Machine Learning", "Python", "Neural Networks", "Nutrition"],
-    category: "AI/ML"
+    category: "AI/ML",
+    wip: true,
+
   },
 
   {
@@ -47,7 +105,8 @@ export const allProjects = [
     image: AIvenndiagramImage,
     technologies: ["React", "TypeScript", "MediaPipe", "Computer Vision", "Accessibility"],
     github: "https://github.com/har5h1l/GazeTracking",
-    category: "AI/ML"
+    category: "AI/ML",
+    date: "2024"
   },
   {
     title: "WellnessGrid",
@@ -56,17 +115,18 @@ export const allProjects = [
     technologies: ["React", "Next.js", "TypeScript", "Healthcare"],
     category: "Biomedicine",
     featured: true,
-    video: "https://www.youtube.com/watch?v=9Ah2SN2-cDc&t=1s"
+    video: "https://www.youtube.com/watch?v=9Ah2SN2-cDc&t=1s",
+    date: "2025"
   },
   {
     title: "fMRI Foundation Model (Acknowledged Contributor)",
-    description: "Contributed to the fMRI Foundation Model project by MedARC (Connor Lane et al.), which develops large-scale self-supervised models for analyzing human brain activity. Worked on explicit denoising method with masked autoencoder. **Acknowledged contributor; not my own project or co-author.**",
+    description: "Contributed to self-supervised representation learning for fMRI and downstream analysis workflows.",
     image: AIvenndiagramImage,
     technologies: ["Deep Learning", "Python", "Neuroscience", "fMRI"],
     github: "https://github.com/medarc-ai/",
     link: "https://www.medarc.ai/",
     category: "Biomedicine",
-    featured: true
+    research: true
   },
   {
     title: "FocusGrid - AI-Powered Study Planning App",
@@ -74,20 +134,27 @@ export const allProjects = [
     image: AIvenndiagramImage,
     technologies: ["React", "TypeScript", "AI", "Web App"],
     github: "https://github.com/har5h1l/FocusGrid",
-    category: "Other"
+    category: "Other",
+    wip: true,
+
   },
   {
     title: "Building GNNs for Drug Discovery",
-    description: "Working on building graph neural networks (GNNs) for drug discovery applications in the Xie research group. Exploring how GNNs can model molecular structures and predict drug properties.",
+    description: "Message passing GNNs that use knowledge graphs of drugs and diseases to learn high-dimensional representations of drugs.",
     image: AIvenndiagramImage,
     technologies: ["Graph Neural Networks", "Python", "Drug Discovery", "Deep Learning"],
-    category: "Biomedicine"
+    category: "Biomedicine",
+    research: true
   },
   {
     title: "Modelling Trust in Multi-Agent Active Inference",
     description: "More details coming soon.",
     image: AIvenndiagramImage,
     technologies: ["Active Inference", "Multi-Agent Systems"],
-    category: "Active Inference"
+    category: "Active Inference",
+    research: true,
+    wip: true,
+    featured: true,
+
   }
 ]

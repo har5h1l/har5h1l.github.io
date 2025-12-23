@@ -2,65 +2,141 @@ import { ExternalLink, Github, Star, PlayCircle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { useEffect, useRef, useState } from 'react'
+import { ProjectActions } from '@/components/ProjectActions';
 
 // Helper to render text with **bold** markdown
 const renderDescription = (text) => {
-  const parts = text.split(/\*\*(.*?)\*\*/g)
-  return parts.map((part, i) => 
-    i % 2 === 1 ? <strong key={i}>{part}</strong> : part
-  )
+  return text.split('\n').map((line, i, arr) => (
+    <span key={i}>
+      {line.split(/\*\*(.*?)\*\*/g).map((part, j) =>
+        j % 2 === 1 ? <strong key={j}>{part}</strong> : part
+      )}
+      {i < arr.length - 1 && <br />}
+    </span>
+  ))
 }
 
-export const ProjectCard = ({ project, onMoreInfo, isActInf }) => {
+export const ProjectCard = ({ project, onShowLinks, children }) => {
   const [expanded, setExpanded] = useState(false)
   const [isOverflowing, setIsOverflowing] = useState(false)
+  const [lineClamp, setLineClamp] = useState(6)
   const descRef = useRef(null)
+  const measureRef = useRef(null)
 
-  // Fixed height overflow detection
+  // responsive line-clamp based on screen size
   useEffect(() => {
-    if (!descRef.current) return
-    
+    const updateLineClamp = () => {
+      const width = window.innerWidth
+      if (width < 640) {
+        // mobile: 4 lines
+        setLineClamp(4)
+      } else if (width < 1024) {
+        // tablet: 5 lines
+        setLineClamp(5)
+      } else {
+        // desktop: 6 lines
+        setLineClamp(6)
+      }
+    }
+
+    updateLineClamp()
+    window.addEventListener('resize', updateLineClamp)
+    return () => window.removeEventListener('resize', updateLineClamp)
+  }, [])
+
+  // proper overflow detection using hidden measurement element
+  useEffect(() => {
+    if (!descRef.current || !measureRef.current || expanded) return
+
     const checkOverflow = () => {
-      const el = descRef.current
-      if (!el) return
-      
-      // Check if content exceeds the fixed max height (140px)
-      const hasOverflow = el.scrollHeight > 140
+      const clampedEl = descRef.current
+      const measureEl = measureRef.current
+      if (!clampedEl || !measureEl) return
+
+      // sync width of measurement element with clamped element
+      const clampedWidth = clampedEl.offsetWidth
+      measureEl.style.width = `${clampedWidth}px`
+
+      // measure natural height without clamping
+      const naturalHeight = measureEl.scrollHeight
+
+      // measure clamped element's height
+      // with line-clamp, we compare natural height with clamped height
+      // get computed styles to calculate expected height for N lines
+      const computedStyle = window.getComputedStyle(clampedEl)
+      const lineHeight = parseFloat(computedStyle.lineHeight) || parseFloat(computedStyle.fontSize) * 1.5
+      const expectedMaxHeight = lineHeight * lineClamp
+
+      // measure actual clamped height
+      const clampedHeight = clampedEl.clientHeight
+
+      // content is overflowing if natural height significantly exceeds the expected max height
+      // use a threshold of 5px to account for sub-pixel rendering and rounding differences
+      // this ensures we only show "more" when content is actually truncated
+      const hasOverflow = naturalHeight > expectedMaxHeight + 5 && naturalHeight > clampedHeight + 5
       setIsOverflowing(hasOverflow)
     }
 
-    // Check after a brief delay to ensure rendering is complete
+    // check after a brief delay to ensure rendering is complete
     const timer = setTimeout(checkOverflow, 150)
-    
-    return () => clearTimeout(timer)
-  }, [project.description])
+
+    // use ResizeObserver to sync widths and check overflow
+    const resizeObserver = new ResizeObserver(() => {
+      checkOverflow()
+    })
+
+    resizeObserver.observe(descRef.current)
+
+    // also check on window resize
+    window.addEventListener('resize', checkOverflow)
+
+    return () => {
+      clearTimeout(timer)
+      resizeObserver.disconnect()
+      window.removeEventListener('resize', checkOverflow)
+    }
+  }, [project.description, expanded, lineClamp])
 
   return (
     <div className="bg-card p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow flex flex-col h-full border border-border">
       <div className="flex items-start justify-between mb-3">
-        <h3 className="text-xl font-bold flex-1">{project.title}</h3>
-        {project.featured && (
-          <Badge variant="default" className="ml-2 flex items-center gap-1 flex-shrink-0">
-            <Star className="h-3 w-3 fill-current" />
-            Featured
+        <h3 className="text-xl font-bold flex-1 line-clamp-3" title={project.title}>{project.title}</h3>
+        {project.wip && (
+          <Badge variant="outline" className="ml-2 flex items-center gap-1 flex-shrink-0 text-muted-foreground border-muted-foreground/40">
+            WIP
           </Badge>
         )}
+
       </div>
-      <div className="mb-4 flex-grow">
+      {project.date && (
+        <div className="text-xs text-muted-foreground mb-2 -mt-2">
+          {project.date}
+        </div>
+      )}
+      <div className="mb-4 flex-grow min-h-0 relative">
+        {/* hidden element to measure natural height */}
+        <div
+          ref={measureRef}
+          className="text-foreground/80 text-sm leading-relaxed absolute opacity-0 pointer-events-none -z-10 invisible"
+          style={{ width: '100%' }}
+        >
+          {renderDescription(project.description)}
+        </div>
         <div
           ref={descRef}
           className="text-foreground/80 text-sm leading-relaxed"
           style={{
-            maxHeight: expanded ? 'none' : '140px',
-            overflow: 'hidden',
-            display: '-webkit-box',
-            WebkitLineClamp: expanded ? 'unset' : 7,
-            WebkitBoxOrient: 'vertical'
+            maxHeight: expanded ? 'none' : undefined,
+            overflow: expanded ? 'visible' : 'hidden',
+            display: expanded ? 'block' : '-webkit-box',
+            WebkitLineClamp: expanded ? 'unset' : lineClamp,
+            WebkitBoxOrient: expanded ? 'unset' : 'vertical',
+            textOverflow: expanded ? 'unset' : 'ellipsis'
           }}
         >
           {renderDescription(project.description)}
         </div>
-        {(isOverflowing || expanded) && (
+        {isOverflowing && (
           <button
             type="button"
             onClick={() => setExpanded(!expanded)}
@@ -77,37 +153,9 @@ export const ProjectCard = ({ project, onMoreInfo, isActInf }) => {
           </Badge>
         ))}
       </div>
-      <div className="flex gap-3 items-center flex-wrap">
-        {project.link && (
-          <Button asChild variant="default" size="sm">
-            <a href={project.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
-              <ExternalLink className="h-4 w-4" />
-              Research Page
-            </a>
-          </Button>
-        )}
-        {project.video && (
-          <Button asChild variant="default" size="sm">
-            <a href={project.video} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
-              <PlayCircle className="h-4 w-4" />
-              Video Demo
-            </a>
-          </Button>
-        )}
-        {project.github && project.github !== '#' && (
-          <Button asChild variant="outline" size="sm">
-            <a href={project.github} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
-              <Github className="h-4 w-4" />
-              GitHub
-            </a>
-          </Button>
-        )}
-        {isActInf && (
-          <Button onClick={() => onMoreInfo(project)} size="sm">
-            More Info
-          </Button>
-        )}
-      </div>
+      <ProjectActions project={project} onShowLinks={onShowLinks}>
+        {children}
+      </ProjectActions>
     </div>
   )
 }
