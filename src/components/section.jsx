@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { motion as Motion } from 'framer-motion'
 
 export function Section({
   children,
@@ -18,7 +18,7 @@ export function Section({
   if (!animate) return content
 
   return (
-    <motion.section
+    <Motion.section
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
@@ -29,14 +29,14 @@ export function Section({
       <div className={`container-custom ${containerClassName}`}>
         {children}
       </div>
-    </motion.section>
+    </Motion.section>
   )
 }
 
 export function PageHeader({ title, subtitle, className = '' }) {
   return (
     <Section className={`pt-24 pb-12 ${className}`}>
-      <motion.div
+      <Motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
@@ -50,7 +50,7 @@ export function PageHeader({ title, subtitle, className = '' }) {
             {subtitle}
           </p>
         )}
-      </motion.div>
+      </Motion.div>
     </Section>
   )
 }
@@ -69,4 +69,3 @@ export function SectionHeader({ title, subtitle, className = '' }) {
     </div>
   )
 }
-

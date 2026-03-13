@@ -1,65 +1,65 @@
 import { Button } from '@/components/ui/button'
-import { ExternalLink, Github, PlayCircle } from 'lucide-react'
 import { Link, useLocation } from 'react-router-dom'
 import { getResearchAnchorId } from '@/lib/utils'
 
-export function ProjectActions({ project, onShowLinks, className = '', children }) {
-    if (!project) return null
-    
-    const location = useLocation()
-    const isOnResearchPage = location.pathname === '/research'
+function splitLinks(project) {
+  if (project.links?.length) {
+    return {
+      primary: project.links.filter((link) => link.variant !== 'secondary'),
+      secondary: project.links.filter((link) => link.variant === 'secondary'),
+    }
+  }
 
-    return (
-        <div className={`flex gap-3 items-center flex-wrap ${className}`}>
-            {/* 1. Research Page / Details (Primary) */}
-            {/* If there's a specific link, use it. Otherwise, if it's not a link-only project, maybe show Details if needed, but per request we strictly follow order */}
-            {project.link ? (
-                <Button asChild variant="default" size="sm">
-                    <a href={project.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
-                        <ExternalLink className="h-4 w-4" />
-                        Research Page
-                    </a>
-                </Button>
-            ) : null}
+  const fallback = []
 
-            {/* Details button for research projects (only show when NOT on Research page) */}
-            {project.research && !project.link && !isOnResearchPage && (
-                <Button asChild variant="default" size="sm">
-                    <Link to={`/research#${getResearchAnchorId(project.title)}`} className="inline-flex items-center gap-2">
-                        Details
-                    </Link>
-                </Button>
-            )}
+  if (project.link) {
+    fallback.push({ label: 'Project', href: project.link, variant: 'primary' })
+  }
 
-            {/* 2. Video Demo */}
-            {project.video && (
-                <Button asChild variant="default" size="sm">
-                    <a href={project.video} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
-                        <PlayCircle className="h-4 w-4" />
-                        Video
-                    </a>
-                </Button>
-            )}
+  if (project.video) {
+    fallback.push({ label: 'Video', href: project.video, variant: 'primary' })
+  }
 
-            {/* 3. GitHub */}
-            {project.github && project.github !== '#' && !project.title.includes("DroneSuite") && (
-                <Button asChild variant="outline" size="sm">
-                    <a href={project.github} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
-                        <Github className="h-4 w-4" />
-                        GitHub
-                    </a>
-                </Button>
-            )}
+  if (project.github) {
+    fallback.push({ label: 'GitHub', href: project.github, variant: 'secondary' })
+  }
 
-            {/* For other projects with recognition, keep modal behavior */}
-            {project.recognition && !project.title.includes("DroneSuite") && !project.title.includes("An Active Inference Approach") && onShowLinks && (
-                <Button onClick={() => onShowLinks(project)} size="sm" variant="secondary">
-                    Links & Recognition
-                </Button>
-            )}
+  return {
+    primary: fallback.filter((link) => link.variant !== 'secondary'),
+    secondary: fallback.filter((link) => link.variant === 'secondary'),
+  }
+}
 
-            {/* 5. Custom Children (e.g. Details link from Home) */}
-            {children}
-        </div>
-    )
+export function ProjectActions({ project, className = '', children }) {
+  const location = useLocation()
+  const isOnResearchPage = location.pathname === '/research'
+  const { primary, secondary } = splitLinks(project)
+
+  return (
+    <div className={`flex flex-wrap items-center gap-3 ${className}`}>
+      {!isOnResearchPage && project.type === 'research' && (
+        <Button asChild size="sm">
+          <Link to={`/research#${getResearchAnchorId(project.title)}`}>Read research</Link>
+        </Button>
+      )}
+
+      {primary.map((link) => (
+        <Button key={link.href} asChild size="sm">
+          <a href={link.href} target="_blank" rel="noopener noreferrer">
+            {link.label}
+          </a>
+        </Button>
+      ))}
+
+      {secondary.map((link) => (
+        <Button key={link.href} asChild size="sm" variant="outline">
+          <a href={link.href} target="_blank" rel="noopener noreferrer">
+            {link.label}
+          </a>
+        </Button>
+      ))}
+
+      {children}
+    </div>
+  )
 }

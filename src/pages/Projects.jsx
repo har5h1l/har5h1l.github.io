@@ -1,133 +1,100 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Button } from '@/components/ui/button';
-import { ProjectCard } from '@/components/ProjectCard';
-import { ProjectModal } from '@/components/ProjectModal';
+import { useEffect, useMemo, useState } from 'react'
+import { motion as Motion } from 'framer-motion'
+import { useSearchParams } from 'react-router-dom'
+import { ProjectCard } from '@/components/ProjectCard'
+import { SectionHeading } from '@/components/editorial'
+import { Seo } from '@/components/seo'
+import { portfolioProjects } from '@/data/projects'
 
-import { allProjects } from '@/data/projects';
-
-const categories = ['All', 'Active Inference', 'Biomedicine', 'Other'];
-
-import { useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
+const categories = ['All', 'Applied Products', 'Leadership & Service', 'Explorations & Early Work']
 
 export default function Projects() {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [selectedCategory, setSelectedCategory] = useState('All');
-  const [selectedProject, setSelectedProject] = useState(null);
+  const [searchParams, setSearchParams] = useSearchParams()
+  const [selectedCategory, setSelectedCategory] = useState('All')
 
-  // Update selected category when URL changes
   useEffect(() => {
-    const filter = searchParams.get('filter');
-    if (filter && categories.includes(filter)) {
-      setSelectedCategory(filter);
-    } else {
-      setSelectedCategory('All');
-    }
-  }, [searchParams]);
+    const filter = searchParams.get('filter')
+    const mappedFilter =
+      filter === 'Biomedicine' ? 'Applied Products' :
+      filter === 'Other' ? 'Explorations & Early Work' :
+      filter
+    setSelectedCategory(mappedFilter && categories.includes(mappedFilter) ? mappedFilter : 'All')
+  }, [searchParams])
 
-  // Update URL when category changes
-  const handleCategoryChange = (category) => {
-    setSelectedCategory(category);
-    if (category === 'All') {
-      setSearchParams({});
-    } else {
-      setSearchParams({ filter: category });
-    }
-  };
+  const visibleProjects = useMemo(() => {
+    if (selectedCategory === 'All') return portfolioProjects
+    return portfolioProjects.filter((project) => project.category === selectedCategory)
+  }, [selectedCategory])
 
-  // Separate featured projects
-  const featuredProjects = allProjects.filter(p => p.featured === true);
+  const featuredProjects = portfolioProjects.filter((project) => project.featured)
 
-  // Regular projects respect the selected category and exclude featured
-  const regularProjects = (
-    selectedCategory === 'All'
-      ? allProjects
-      : allProjects.filter(p => p.category === selectedCategory)
-  )
-    .filter(p => !p.featured)
-    .sort((a, b) => 0);
-
-  const handleMoreInfo = (project) => {
-    setSelectedProject(project);
-  };
-
-  const handleCloseModal = () => {
-    setSelectedProject(null);
-  };
+  function handleCategoryChange(category) {
+    setSelectedCategory(category)
+    setSearchParams(category === 'All' ? {} : { filter: category })
+  }
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="container mx-auto px-4 py-8 max-w-[900px]">
-        <h1 className="text-4xl font-bold mb-8">Projects</h1>
+    <div className="page-shell">
+      <Seo
+        title="Projects | Harshil Shah"
+        description="Applied products, service initiatives, and early-stage explorations by Harshil Shah across accessibility, community, and AI."
+        keywords="Harshil Shah projects, RISE Tennis, accessibility, student projects, AI"
+      />
 
-        {/* Featured Section */}
-        {featuredProjects.length > 0 && (
-          <section className="mb-12">
-            <div className="flex items-center gap-3 mb-6">
-              <h2 className="text-3xl font-bold">Featured</h2>
-            </div>
-            <motion.div
-              layout
-              className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-            >
-              {featuredProjects.map(project => (
-                <motion.div
-                  layout
-                  key={project.title}
-                  id={project.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')}
-                >
-                  <ProjectCard
-                    project={project}
-                    onShowLinks={handleMoreInfo}
-                  />
-                </motion.div>
-              ))}
-            </motion.div>
-          </section>
-        )}
+      <section className="content-grid py-10 sm:py-14">
+        <SectionHeading
+          eyebrow="Projects"
+          title="Projects"
+          description="Product work, leadership, and other non-research projects."
+        />
+      </section>
 
-        {/* Category Filter */}
-        <div className="flex justify-center flex-wrap gap-4 mb-8">
-          {categories.map(category => (
-            <Button
+      <section className="content-grid pb-8">
+        <div className="flex flex-wrap gap-3">
+          {categories.map((category) => (
+            <button
               key={category}
-              variant={selectedCategory === category ? 'default' : 'outline'}
+              type="button"
               onClick={() => handleCategoryChange(category)}
-              className="mb-2"
+              className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+                selectedCategory === category ? 'bg-foreground text-background' : 'bg-card text-muted-foreground hover:bg-muted hover:text-foreground'
+              }`}
             >
               {category}
-            </Button>
+            </button>
           ))}
         </div>
+      </section>
 
-        {/* Regular Projects Section */}
-        <section>
-          <div className="flex items-center gap-3 mb-6">
-            <h2 className="text-3xl font-bold">
-              {selectedCategory === 'All' ? 'All Projects' : selectedCategory}
-            </h2>
-          </div>
-          <motion.div
-            layout
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-          >
-            {regularProjects.map(project => (
-              <motion.div
-                layout
-                key={project.title}
-                id={project.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')}
-              >
-                <ProjectCard
-                  project={project}
-                  onShowLinks={handleMoreInfo}
-                />
-              </motion.div>
+      {selectedCategory === 'All' && featuredProjects.length > 0 && (
+        <section className="content-grid py-10">
+          <SectionHeading eyebrow="Featured" title="Featured projects" />
+          <div className="mt-10 grid items-start gap-6 lg:grid-cols-2">
+            {featuredProjects.map((project) => (
+              <div key={project.slug} id={project.slug}>
+                <ProjectCard project={project} hideImage />
+              </div>
             ))}
-          </motion.div>
+          </div>
         </section>
-      </div>
-      <ProjectModal project={selectedProject} onClose={handleCloseModal} />
+      )}
+
+      <section className="content-grid py-10 sm:pb-24">
+        <div className="grid items-start gap-6 lg:grid-cols-2">
+          {visibleProjects.map((project, index) => (
+            <Motion.div
+              key={project.slug}
+              id={project.slug}
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-80px' }}
+              transition={{ duration: 0.35, delay: index * 0.04 }}
+            >
+              <ProjectCard project={project} hideImage />
+            </Motion.div>
+          ))}
+        </div>
+      </section>
     </div>
-  );
+  )
 }

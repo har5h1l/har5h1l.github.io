@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from 'react'
-import { motion } from 'framer-motion'
 
 // use characters that match typical text (letters, numbers, common punctuation)
 const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
@@ -153,4 +152,3 @@ const ScrambledText = ({ text, trigger, onScrambleComplete, className = '' }) =>
 }
 
 export default ScrambledText
-
