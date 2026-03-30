@@ -26,7 +26,7 @@ export function getProjectMediaClasses(project, { containPadding = 'p-4', defaul
 
 // generate anchor id for research projects
 export function getResearchAnchorId(projectTitle) {
-    if (projectTitle.includes("DroneSuite")) {
+    if (projectTitle.includes("DroneSuite") || projectTitle.includes("VAMAI")) {
         return "dronesuite";
     }
     if (projectTitle.includes("An Active Inference Approach")) {

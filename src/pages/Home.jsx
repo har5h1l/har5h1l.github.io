@@ -205,7 +205,19 @@ export default function Home() {
               <div key={item.title} className="rounded-[24px] border border-border bg-card p-5 shadow-[0_10px_30px_rgba(22,34,44,0.05)]">
                 <p className="text-sm font-semibold uppercase tracking-[0.14em] text-muted-foreground">{item.subtitle}</p>
                 <h3 className="mt-3 text-xl font-semibold text-foreground">{item.title}</h3>
-                <p className="mt-3 text-sm leading-7 text-muted-foreground">{item.description}</p>
+                <p className="mt-3 text-sm leading-7 text-muted-foreground">
+                  {typeof item.description === 'string'
+                    ? item.description
+                    : item.description.map((part, index) =>
+                        part.type === 'link' ? (
+                          <a key={index} href={part.href} target="_blank" rel="noopener noreferrer" className="text-primary underline hover:no-underline">
+                            {part.value}
+                          </a>
+                        ) : (
+                          part.value
+                        )
+                      )}
+                </p>
                 <div className="mt-4 flex flex-wrap gap-2">
                   {item.links.map((link) => (
                     <Button key={link.href} size="sm" variant="outline" asChild>

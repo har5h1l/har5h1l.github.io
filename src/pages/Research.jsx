@@ -18,6 +18,7 @@ function ResearchEntry({ project }) {
     <article id={getResearchAnchorId(project.title)} className="rounded-[24px] border border-border bg-card p-6 sm:p-8">
       <p className="section-eyebrow">{project.date || project.researchCategory}</p>
       <h3 className="editorial-heading mt-3 text-3xl text-foreground">{project.title}</h3>
+      {project.authors && <p className="mt-2 text-sm leading-7 text-muted-foreground">With {project.authors}</p>}
       {project.kicker && <p className="mt-3 text-lg text-foreground/80">{project.kicker}</p>}
       <p className="mt-5 max-w-4xl text-lg leading-9 text-muted-foreground">{project.description}</p>
       <ProjectActions project={project} className="mt-6" />

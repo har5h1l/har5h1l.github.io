@@ -54,14 +54,26 @@ export const currentFocus = [
   {
     title: "What I'm doing now",
     description:
-      'Currently focused on DroneSuite, multi-agent social learning with trust and theory of mind, and broader work at the intersection of AI, biology, and neuroscience.',
+      'Currently focused on VAMAI, multi-agent social learning with trust and theory of mind, and broader work at the intersection of AI, biology, and neuroscience.',
   },
 ]
 
 export const achievements = [
   {
+    title: 'ACSEF Grand Award / ISEF Finalist',
+    subtitle: 'March 2026',
+    description: [
+      { type: 'text', value: 'DroneSuite/VAMAI received the Grand Award at the ' },
+      { type: 'link', href: 'https://acsef.org/', value: 'Hitachi Science and Engineering Fair, Alameda County (ACSEF/HSEF)' },
+      { type: 'text', value: ', and advanced as a Regeneron International Science and Engineering Fair (ISEF) finalist.' },
+    ],
+    links: [
+      { label: 'Learn More', href: '/research#dronesuite' },
+    ],
+  },
+  {
     title: 'Congressional App Challenge District Finalist',
-    subtitle: '2026',
+    subtitle: 'January 2026',
     description:
       'WellnessGrid was recognized as a district finalist in the Congressional App Challenge.',
     links: [
@@ -71,21 +83,12 @@ export const achievements = [
   },
   {
     title: 'Presented at the 5th Annual Active Inference Symposium',
-    subtitle: '2025',
+    subtitle: 'November 2025',
     description:
       'Presented "Combining Hierarchical Active Inference with Affordance Theory for Scalable Policy Selection in Autonomous Drone Navigation" (co-authored with Satyaki Maitra) at the 5th Annual Active Inference Symposium.',
     links: [
       { label: 'Learn More', href: '#' },
       { label: 'Watch Recording', href: '#' },
-    ],
-  },
-  {
-    title: 'Accepted to present at IWAI 2025',
-    subtitle: '2025',
-    description:
-      'Accepted to present at IWAI (International Workshop on Active Inference) for October 15-17! My presentation on the 17th will cover "Combining Hierarchical Active Inference with Affordance Theory for Scalable Policy Selection in Autonomous Drone Navigation" (co-authored with Satyaki Maitra).',
-    links: [
-      { label: 'Learn More', href: '#' },
     ],
   },
 ]
@@ -95,13 +98,13 @@ export const recentMilestones = [
     date: 'November 15, 2025',
     title: 'Presented drone-navigation research at the 5th Active Inference Symposium',
     description:
-      'Presented the DroneSuite work with Satyaki Maitra at the 5th Annual Active Inference Symposium.',
+      'Presented the VAMAI work with Satyaki Maitra at the 5th Annual Active Inference Symposium.',
   },
   {
     date: 'July 29, 2025',
     title: 'Accepted to present at IWAI 2025',
     description:
-      'Accepted to present DroneSuite at IWAI 2025.',
+      'Accepted to present VAMAI at IWAI 2025.',
   },
 ]
 

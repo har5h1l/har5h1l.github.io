@@ -7,15 +7,16 @@ export const allProjects = [
   {
     slug: 'dronesuite',
     type: 'research',
-    title: 'DroneSuite',
+    title: 'VAMAI',
+    authors: 'Harshil Shah, Satyaki Maitra',
     kicker:
-      'Hierarchical active inference for drone navigation',
+      'Affordance-based hierarchical active inference for autonomous drone navigation',
     summary:
-      'A drone-navigation project using hierarchical active inference in uncertain environments.',
+      'Affordance-based hierarchical active inference for autonomous drone navigation, previously known as DroneSuite.',
     description:
-      'DroneSuite explores how hierarchical active inference can help drones navigate uncertain environments more reliably.',
+      'Previously known as DroneSuite.',
     cardSummary:
-      'A drone-navigation project using hierarchical active inference in uncertain environments.',
+      'Affordance-based hierarchical active inference for autonomous drone navigation, previously known as DroneSuite.',
     image: droneImage,
     mediaFit: 'cover',
     mediaPosition: 'center',
@@ -26,8 +27,7 @@ export const allProjects = [
     featured: true,
     role: 'Co-author and presenter',
     links: [
-      { label: 'Project', href: 'https://www.shahmaitraresearch.com/', variant: 'primary' },
-      { label: 'Video', href: 'https://www.youtube.com/watch?v=1q40Jqk1HYs&t=36000s', variant: 'primary' },
+      { label: 'Project', href: 'https://www.shahmaitraresearch.com/vamai', variant: 'primary' },
     ],
     recognition: [
       {
@@ -35,14 +35,18 @@ export const allProjects = [
         detail: 'Extended abstract and poster accepted at the International Workshop on Active Inference.',
         links: [
           { label: 'Workshop', href: 'https://iwaiworkshop.github.io/' },
-          { label: 'Poster & Abstract', href: 'https://www.shahmaitraresearch.com/project' },
-          { label: 'Project Page', href: 'https://www.shahmaitraresearch.com/project' },
+          { label: 'Poster & Abstract', href: 'https://www.shahmaitraresearch.com/vamai' },
+          { label: 'Project Page', href: 'https://www.shahmaitraresearch.com/vamai' },
         ],
       },
       {
         label: '5th Active Inference Symposium',
         detail: 'Oral presentation in November 2025.',
         links: [{ label: 'Recording', href: 'https://www.youtube.com/watch?v=1q40Jqk1HYs&t=36000s' }],
+      },
+      {
+        label: 'ACSEF Grand Award / ISEF Finalist',
+        detail: 'March 2026',
       },
     ],
   },

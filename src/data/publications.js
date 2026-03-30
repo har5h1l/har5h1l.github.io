@@ -26,7 +26,7 @@ export const publicationSections = [
           'Extended abstract and poster on drone navigation with hierarchical active inference.',
         links: [
           { label: 'Workshop', href: 'https://iwaiworkshop.github.io/' },
-          { label: 'Project', href: 'https://www.shahmaitraresearch.com/project' },
+          { label: 'Project', href: 'https://www.shahmaitraresearch.com/vamai' },
         ],
       },
       {
