@@ -1,11 +1,10 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Navigate, Routes, Route } from 'react-router-dom'
 import { ThemeProvider } from '@/components/theme-provider'
 import { Navigation } from '@/components/navigation'
 import { Footer } from '@/components/footer'
 import ScrollToTop from '@/components/ScrollToTop'
 import Home from '@/pages/Home'
 import Research from '@/pages/Research'
-import Projects from '@/pages/Projects'
 import Blog from '@/pages/Blog'
 import Publications from '@/pages/Publications'
 import '@fontsource-variable/inter';
@@ -22,7 +21,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/research" element={<Research />} />
               <Route path="/publications" element={<Publications />} />
-              <Route path="/projects" element={<Projects />} />
+              <Route path="/projects" element={<Navigate to="/research" replace />} />
               <Route path="/blog" element={<Blog />} />
             </Routes>
           </main>

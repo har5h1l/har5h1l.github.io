@@ -11,11 +11,13 @@ export function SectionHeading({ eyebrow, title, description, className = '' }) 
 }
 
 export function LinkChip({ href, label, className = '' }) {
+  const isInternalLink = href.startsWith('/')
+
   return (
     <a
       href={href}
-      target="_blank"
-      rel="noopener noreferrer"
+      target={isInternalLink ? undefined : '_blank'}
+      rel={isInternalLink ? undefined : 'noopener noreferrer'}
       className={`inline-flex items-center gap-1.5 rounded-full border border-border bg-background px-3 py-1.5 text-sm font-medium text-foreground transition-colors hover:border-primary hover:text-primary hover:no-underline ${className}`}
     >
       <span>{label}</span>

@@ -73,7 +73,7 @@ export default function Research() {
         <SectionHeading
           eyebrow="Research & Projects"
           title="Research & Projects"
-          description="My research focuses on developing more intelligent AI systems that can operate robustly in uncertain, real-world environments. I work primarily within the Active Inference framework, applying it to autonomous navigation problems and multi-agent systems with theory of mind. I'm also exploring how deep learning can advance our understanding of biological systems, particularly through graph neural networks for computational biology and foundational models for neuroscience."
+          description="My research focuses on developing more intelligent AI systems that can operate robustly in uncertain, real-world environments. I work primarily within the Active Inference framework, where I study how agents can build beliefs, adapt under uncertainty, and act more effectively when information is incomplete or changing. This has led me to projects in autonomous navigation, affordance-based decision-making, and multi-agent systems that explore social learning, theory of mind, trust, and affect. In parallel, I am interested in how modern machine learning can deepen our understanding of biology and neuroscience, particularly through signed graph neural networks for biomedicine and foundational models for brain imaging."
         />
       </section>
 

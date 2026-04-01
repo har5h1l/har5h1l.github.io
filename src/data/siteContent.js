@@ -47,7 +47,7 @@ export const homeHero = {
   eyebrow: 'researcher, learner, thinker',
   title: "Hi, I'm Harshil...",
   intro:
-    "I'm a student from the Bay Area in California passionate about the development of more intelligent AI and its application to solve critical problems. I'm part of the Active Inference community, where I'm conducting research in autonomous drone navigation and multi-agent learning systems. I've also built projects in medicine, biology, and neuroscience. Beyond research, I love debate, mathematics, reading, and tennis.",
+    "I'm a student researcher from the Bay Area passionate about Active Inference, neuroscience, and AI. My recent focus has been on autonomous navigation, affordance theory, social cognition, and multi-agent systems. I've also applied machine learning to biomedicine and neuroscience. Beyond research, I love debate, mathematics, tennis, and learning new things.",
 }
 
 export const currentFocus = [
@@ -111,9 +111,9 @@ export const recentMilestones = [
 // paragraph can be a string or array of { type: 'text'|'link', value: string, href?: string }
 export const bioParagraphs = [
   [
-    { type: 'text', value: "I've been learning and applying Active Inference since 2024. Beyond that, I've been working with mainstream AI, including machine learning models and LLMs. I'm a contributor to " },
+    { type: 'text', value: "I've been learning and applying Active Inference since 2024. Through projects like VAMAI, my work has explored how active inference can support autonomous navigation in complex environments, as well as how multi-agent systems can model social learning, theory of mind, and affect. More broadly, I'm interested in how agents build beliefs, adapt under uncertainty, and coordinate more intelligently with one another. Beyond Active Inference, I've applied machine learning and LLMs. As a contributor to " },
     { type: 'link', href: 'https://www.medarc.ai/', value: "MedArc's fMRI foundational model" },
-    { type: 'text', value: ', and recently I\'ve also been getting more involved with GNNs for computational biology research.' },
+    { type: 'text', value: ' and through ongoing research with signed GNNs for biomedicine, I have been exploring how modern AI can help model complex biological systems and generate useful scientific insights.' },
   ],
   "Other than research, I love competing in public forum debate, playing tennis for my school team, reading, experimenting with recipes and drinks, listening to podcasts, and more. I'm the founder and president of R.I.S.E. Tennis, a nonprofit where we aim to spread tennis to everyone.",
   "Mathematics has been a huge part of my life and I love learning more because it teaches you how to think. I love interdisciplinary thinking in every aspect of life, from psychology to neuroscience to how the world works more broadly. One day, I hope to be a research scientist.",

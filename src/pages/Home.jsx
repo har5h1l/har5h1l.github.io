@@ -1,16 +1,13 @@
-import { useMemo, useState } from 'react'
+import { useMemo } from 'react'
 import { motion as Motion } from 'framer-motion'
 import {
   ArrowRight,
   BookOpenText,
-  Brain,
-  FlaskConical,
   Github,
   Globe2,
   Linkedin,
   Mail,
   MessageSquare,
-  Users,
 } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import harshilImage from '@/assets/images/harshil_pfp.jpg'
@@ -24,50 +21,6 @@ import { allProjects } from '@/data/projects'
 import { writingArticles } from '@/data/writing'
 
 const featuredProjects = allProjects.filter((project) => project.featured)
-
-const expandedAbout = [
-  {
-    title: 'Why Research',
-    body: "There's a strong force pulling me toward research. My favorite moments are unglamorous: pacing in my room, sketching the same system for the millionth time, realizing one assumption is wrong, and redesigning the architecture until it finally clicks. Those are the moments I love most.",
-  },
-  {
-    title: 'What I Keep Coming Back To',
-    body: "I'm obsessed with intelligence that survives real life: systems that still work when the data is messy, the lighting changes, or the full picture is missing. That's a big reason I gravitated toward Active Inference. It treats uncertainty as something you model and act with, not something you pretend away.",
-  },
-  {
-    title: 'What Keeps Me Sharp',
-    body: "Debate, tennis, and reading all sharpen the same muscles I care about in research: adaptation under pressure, disciplined curiosity, and the ability to revise your thinking instead of defending a weak assumption forever.",
-  },
-  {
-    title: 'My Goals',
-    body: 'Long term, I want to become a researcher building socially aligned AI systems that hold up in messy reality while still leaving room for a full, balanced life outside the lab.',
-  },
-]
-
-const topicCards = [
-  {
-    title: 'Active Inference',
-    description:
-      'Applied this neuroscience-based AI to autonomous navigation and am currently working on real-world drones and multi-agent social learning systems with theory of mind.',
-    href: '/research',
-    icon: Brain,
-  },
-  {
-    title: 'Biomedicine Applications',
-    description:
-      'Passionate about AI in healthcare and biology, especially computational biology, neuroscience, and tools that can help in real-world settings.',
-    href: '/projects',
-    icon: FlaskConical,
-  },
-  {
-    title: 'Leadership',
-    description:
-      "Founder and president of R.I.S.E. Tennis, with additional leadership experience across school and community initiatives.",
-    href: 'https://risetennis.org/',
-    external: true,
-    icon: Users,
-  },
-]
 
 const profileIcons = {
   mail: Mail,
@@ -83,7 +36,6 @@ function parseDate(dateString) {
 }
 
 export default function Home() {
-  const [isAboutExpanded, setIsAboutExpanded] = useState(false)
   const featuredWriting = useMemo(() => [...writingArticles].sort((a, b) => parseDate(b.date) - parseDate(a.date)).slice(0, 3), [])
 
   return (
@@ -149,47 +101,13 @@ export default function Home() {
               ))}
             </div>
 
-            {isAboutExpanded && (
-              <div className="mt-8 space-y-7 border-t border-border pt-8">
-                {expandedAbout.map((section) => (
-                  <div key={section.title}>
-                    <h3 className="text-xl font-semibold text-foreground">{section.title}</h3>
-                    <p className="mt-3 text-base leading-8 text-muted-foreground">{section.body}</p>
-                  </div>
-                ))}
-              </div>
-            )}
-
             <div className="mt-6">
-              <Button variant={isAboutExpanded ? 'outline' : 'default'} onClick={() => setIsAboutExpanded((value) => !value)}>
-                {isAboutExpanded ? 'Collapse' : 'Still curious?'}
+              <Button asChild>
+                <a href="#contact">Still curious?</a>
               </Button>
             </div>
           </div>
 
-          <div className="mt-8 grid gap-5 md:grid-cols-3">
-            {topicCards.map((card) => {
-              const Icon = card.icon
-
-              return card.external ? (
-                <a key={card.title} href={card.href} target="_blank" rel="noopener noreferrer" className="editorial-card flex flex-col gap-4 p-5 hover:no-underline">
-                  <h3 className="text-lg font-semibold text-foreground">{card.title}</h3>
-                  <p className="text-sm leading-7 text-muted-foreground">{card.description}</p>
-                  <div className="mt-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-muted text-primary">
-                    <Icon className="h-6 w-6" />
-                  </div>
-                </a>
-              ) : (
-                <Link key={card.title} to={card.href} className="editorial-card flex flex-col gap-4 p-5 hover:no-underline">
-                  <h3 className="text-lg font-semibold text-foreground">{card.title}</h3>
-                  <p className="text-sm leading-7 text-muted-foreground">{card.description}</p>
-                  <div className="mt-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-muted text-primary">
-                    <Icon className="h-6 w-6" />
-                  </div>
-                </Link>
-              )
-            })}
-          </div>
         </div>
       </section>
 
@@ -295,7 +213,7 @@ export default function Home() {
 
           <div className="mt-8 text-center">
             <Button asChild variant="outline">
-              <Link to="/projects" className="inline-flex items-center gap-2">
+              <Link to="/research" className="inline-flex items-center gap-2">
                 View All Projects
                 <ArrowRight className="h-4 w-4" />
               </Link>

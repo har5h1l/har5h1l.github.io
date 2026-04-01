@@ -14,7 +14,7 @@ export const allProjects = [
     summary:
       'Affordance-based hierarchical active inference for autonomous drone navigation, previously known as DroneSuite.',
     description:
-      'Previously known as DroneSuite.',
+      'VAMAI addresses autonomous drone navigation in GNSS-denied, unstructured environments through a training-free hierarchical active inference framework. By embedding affordance theory into a learned allocentric map and suitability belief, it unifies perception, memory, and planning so drones can select safer, more efficient actions under uncertainty. Previously known as DroneSuite.',
     cardSummary:
       'Affordance-based hierarchical active inference for autonomous drone navigation, previously known as DroneSuite.',
     image: droneImage,
@@ -73,6 +73,30 @@ export const allProjects = [
       'What kinds of belief updates support theory of mind without brittle overfitting to other agents?',
       'How can social learning improve cooperation when agents operate with partial or conflicting information?',
     ],
+    recognition: [
+      {
+        label: 'Open for feedback',
+        detail: 'I am actively looking for mentorship, critique, and conversations with researchers interested in social cognition and active inference.',
+      },
+    ],
+  },
+  {
+    slug: 'affect-in-multi-agent-active-inference',
+    type: 'research',
+    title: 'Affect in Multi-Agent Active Inference',
+    summary:
+      'More info coming soon.',
+    description:
+      'More info coming soon.',
+    cardSummary:
+      'More info coming soon.',
+    researchCategory: 'Active Inference & Multi-Agent Cognition',
+    technologies: ['Active Inference', 'Multi-Agent Systems', 'Affect'],
+    badges: ['Current Focus', 'Work in Progress'],
+    visualTags: ['Affect', 'Multi-Agent', 'Active Inference'],
+    visualNote: 'More info coming soon.',
+    date: '2025-2026',
+    role: 'Research direction',
     recognition: [
       {
         label: 'Open for feedback',
@@ -180,6 +204,22 @@ export const allProjects = [
     ],
   },
   {
+    slug: 'biomedical-gnns',
+    type: 'research',
+    title: 'Biomedical GNNs',
+    summary:
+      'Research on signed graph neural networks in a biomedical context.',
+    description:
+      'Working under Dr. Xie at Northeastern University on signed graph neural networks in a biomedical research context.',
+    cardSummary:
+      'Signed graph neural network research in a biomedical context.',
+    researchCategory: 'AI for Biology, Medicine, and Neuroscience',
+    technologies: ['Graph Neural Networks', 'Signed Graphs', 'Python'],
+    badges: ['Research'],
+    date: '2025-2026',
+    role: 'Researcher',
+  },
+  {
     slug: 'wellnessgrid',
     type: 'project',
     title: 'WellnessGrid',
@@ -284,22 +324,6 @@ export const allProjects = [
     date: '2024',
     role: 'Researcher',
     links: [{ label: 'GitHub', href: 'https://github.com/har5h1l/NutritionProject', variant: 'secondary' }],
-  },
-  {
-    slug: 'nutritional-recommendation-system-development',
-    type: 'project',
-    title: 'Nutritional Recommendation System Development',
-    summary:
-      'An early-stage recommendation system for personalized nutrition guidance.',
-    description:
-      'Currently developing a recommendation system to provide personalized nutritional guidance. This ongoing project involves researching neural network architectures specialized for recommendation systems, with plans to deploy as a user-friendly application.',
-    cardSummary:
-      'An early-stage recommendation system for personalized nutrition guidance.',
-    category: 'Explorations & Early Work',
-    technologies: ['Machine Learning', 'Python', 'Neural Networks', 'Nutrition'],
-    badges: ['Work in Progress'],
-    date: '2024-2025',
-    role: 'Builder',
   },
 ]
 

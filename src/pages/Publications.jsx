@@ -52,6 +52,9 @@ export default function Publications() {
                     )}
 
                     <div className="mt-5 flex flex-wrap gap-2">
+                      {item.projectSlug && (
+                        <LinkChip href={`/research#${item.projectSlug}`} label="More Details" />
+                      )}
                       {item.links.map((link) => (
                         <LinkChip key={link.href} href={link.href} label={link.label} />
                       ))}
