@@ -47,7 +47,7 @@ export const homeHero = {
   eyebrow: 'researcher, learner, thinker',
   title: "Hi, I'm Harshil...",
   intro:
-    "I'm a student researcher from the Bay Area passionate about Active Inference, neuroscience, and AI. My recent focus has been on autonomous navigation, affordance theory, social cognition, and multi-agent systems. I've also applied machine learning to biomedicine and neuroscience. Beyond research, I love debate, mathematics, tennis, and learning new things.",
+    "I'm a student researcher from the Bay Area interested in how intelligent systems learn from experience, reason under uncertainty, and act in complex environments. My work connects Active Inference, neuroscience, affordance theory, social cognition, and multi-agent AI, with recent applications in autonomous navigation, biomedicine, and computational neuroscience. Beyond research, I enjoy debate, mathematics, tennis, and learning new things.",
 }
 
 export const currentFocus = [
@@ -111,12 +111,20 @@ export const recentMilestones = [
 // paragraph can be a string or array of { type: 'text'|'link', value: string, href?: string }
 export const bioParagraphs = [
   [
-    { type: 'text', value: "I've been learning and applying Active Inference since 2024. Through projects like VAMAI, my work has explored how active inference can support autonomous navigation in complex environments, as well as how multi-agent systems can model social learning, theory of mind, and affect. More broadly, I'm interested in how agents build beliefs, adapt under uncertainty, and coordinate more intelligently with one another. Beyond Active Inference, I've applied machine learning and LLMs. As a contributor to " },
+    {
+      type: 'text',
+      value:
+        "I'm interested in a central question: how do intelligent systems, whether biological or artificial, turn experience into knowledge, act under uncertainty, and coordinate their own perspective with the perspectives of others? That question has led me toward Active Inference, neuroscience, affordance theory, social cognition, and multi-agent systems. Through projects like VAMAI, I've explored how autonomous agents can build beliefs about uncertain environments, infer what actions are possible, and adapt when the world is incomplete, noisy, or changing. Beyond Active Inference, I've applied machine learning and LLMs. As a contributor to ",
+    },
     { type: 'link', href: 'https://www.medarc.ai/', value: "MedArc's fMRI foundational model" },
-    { type: 'text', value: ' and through ongoing research with signed GNNs for biomedicine, I have been exploring how modern AI can help model complex biological systems and generate useful scientific insights.' },
+    {
+      type: 'text',
+      value:
+        " and through ongoing research with signed GNNs for biomedicine, I've been exploring how modern AI can help model complex biological systems and generate useful scientific insights.",
+    },
   ],
-  "Other than research, I love competing in public forum debate, playing tennis for my school team, reading, experimenting with recipes and drinks, listening to podcasts, and more. I'm the founder and president of R.I.S.E. Tennis, a nonprofit where we aim to spread tennis to everyone.",
-  "Mathematics has been a huge part of my life and I love learning more because it teaches you how to think. I love interdisciplinary thinking in every aspect of life, from psychology to neuroscience to how the world works more broadly. One day, I hope to be a research scientist.",
+  "Outside research, I enjoy competing in public forum debate, playing tennis for my school team, reading, experimenting with recipes and drinks, listening to podcasts, and learning broadly. I'm also the founder and president of R.I.S.E. Tennis, a nonprofit focused on making tennis more accessible.",
+  "Mathematics has shaped how I think because it teaches me to reason from structure rather than surface patterns. I love learning because it gives me new ways to connect ideas, from psychology and neuroscience to artificial intelligence and biology. Long term, I hope to keep asking questions at that intersection as a research scientist.",
 ]
 
 export const homeResearchSlugs = ['dronesuite', 'multi-agent-theory-of-mind-with-trust-and-social-learning', 'signed-gnns-and-benchmarking']
