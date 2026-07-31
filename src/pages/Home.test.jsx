@@ -69,12 +69,13 @@ describe('Home', () => {
     expect(screen.getByRole('link', { name: 'Research Direction' })).toHaveAttribute('href', '#research-direction')
   })
 
-  it('keeps the hero focused on its heading and research direction CTA', () => {
+  it('renders the exact two-paragraph hero introduction', () => {
     renderHome()
 
     expect(screen.getByText('intelligence, cognition, computation')).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: "Hi, I'm Harshil..." })).toBeInTheDocument()
-    expect(screen.queryByText(/I’m a student researcher from the Bay Area/)).not.toBeInTheDocument()
+    expect(screen.getByText(/I’m a student researcher from the Bay Area/)).toBeInTheDocument()
+    expect(screen.getByText(/My work draws from Active Inference/)).toBeInTheDocument()
   })
 
   it('uses intelligent-systems and efficient-computing keywords in runtime metadata', () => {

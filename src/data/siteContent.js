@@ -40,6 +40,10 @@ export const profileLinks = [
 export const homeHero = {
   eyebrow: 'intelligence, cognition, computation',
   title: "Hi, I'm Harshil...",
+  paragraphs: [
+    'I’m a student researcher from the Bay Area interested in two connected questions: How can we build and understand intelligent systems, and how can we run them efficiently at scale?',
+    'My work draws from Active Inference, cognitive science, neuroscience-inspired approaches to AI, robotics, and multi-agent systems to study how agents learn, reason, and act under uncertainty. I’m also beginning to explore probabilistic and thermodynamic computing as alternative foundations for more efficient artificial intelligence.',
+  ],
 }
 
 export const researchDirection = {

@@ -49,6 +49,11 @@ export default function Home() {
             <Motion.div initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.35, delay: 0.08 }} className="md:col-span-2">
               <p className="text-base font-medium text-primary sm:text-lg">{homeHero.eyebrow}</p>
               <h1 className="editorial-heading mt-3 text-4xl text-foreground sm:text-5xl md:text-6xl">{homeHero.title}</h1>
+              <div className="mt-5 space-y-4 text-lg leading-9 text-foreground/85">
+                {homeHero.paragraphs.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
               <div className="mt-6 flex flex-wrap gap-3">
                 <Button asChild size="lg">
                   <a href="#research-direction">Research Direction</a>
