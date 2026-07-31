@@ -5,7 +5,7 @@ import { Footer } from '@/components/footer'
 import ScrollToTop from '@/components/ScrollToTop'
 import Home from '@/pages/Home'
 import Research from '@/pages/Research'
-import Blog from '@/pages/Blog'
+import Updates from '@/pages/Updates'
 import Publications from '@/pages/Publications'
 import '@fontsource-variable/inter';
 
@@ -21,8 +21,9 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/research" element={<Research />} />
               <Route path="/publications" element={<Publications />} />
+              <Route path="/updates" element={<Updates />} />
               <Route path="/projects" element={<Navigate to="/research" replace />} />
-              <Route path="/blog" element={<Blog />} />
+              <Route path="/blog" element={<Navigate to="/#writing" replace />} />
             </Routes>
           </main>
           <Footer />

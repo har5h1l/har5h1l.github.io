@@ -13,6 +13,17 @@ vi.mock('framer-motion', () => ({
 }))
 
 describe('Publications', () => {
+    it('uses current publication topics in page metadata', () => {
+        render(
+            <MemoryRouter>
+                <Publications />
+            </MemoryRouter>
+        )
+
+        expect(document.querySelector('meta[name="description"]')).toHaveAttribute('content', expect.stringContaining('partner-specific affective precision'))
+        expect(document.querySelector('meta[name="keywords"]')).toHaveAttribute('content', expect.stringContaining('social learning'))
+    })
+
     it('shows the new DroneSuite conference entry with research and external links', () => {
         render(
             <MemoryRouter>

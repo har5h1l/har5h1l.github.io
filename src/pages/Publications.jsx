@@ -8,8 +8,8 @@ export default function Publications() {
     <div className="page-shell">
       <Seo
         title="Publications | Harshil Shah"
-        description="Publications, conference papers, posters, and talks by Harshil Shah across active inference, autonomous systems, and AI for biology."
-        keywords="Harshil Shah publications, active inference papers, drone navigation research, theory of mind AI, AI biology"
+        description="Publications, conference papers, posters, and talks by Harshil Shah across active inference, autonomous navigation, partner-specific affective precision, social learning, and biomedical machine learning."
+        keywords="Harshil Shah publications, active inference papers, autonomous navigation research, partner-specific affective precision, social learning, biomedical machine learning"
       />
 
       <section className="content-grid py-10 sm:py-14">
@@ -36,7 +36,7 @@ export default function Publications() {
                   <article key={item.title} className="border-t border-border pt-6 first:border-t-0 first:pt-0">
                     <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                       <div className="max-w-3xl">
-                        <h2 className="editorial-heading text-xl text-foreground">{item.title}</h2>
+                        <h3 className="editorial-heading text-xl text-foreground">{item.title}</h3>
                         <p className="mt-2 text-sm font-medium text-foreground/75">{item.venue}</p>
                         {item.authors && (
                           <p className="mt-2 text-sm leading-7 text-muted-foreground">With {item.authors}</p>

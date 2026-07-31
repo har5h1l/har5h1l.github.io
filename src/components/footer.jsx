@@ -6,7 +6,7 @@ const footerLinks = [
   { label: 'Research', href: '/research' },
   { label: 'Publications', href: '/publications' },
   { label: 'Projects', href: '/research' },
-  { label: 'Blog', href: '/blog' },
+  { label: 'Writing', href: '/#writing' },
 ]
 
 export function Footer() {
@@ -18,7 +18,7 @@ export function Footer() {
               <h3 className="text-sm font-semibold uppercase tracking-[0.16em] text-muted-foreground">Navigate</h3>
               <div className="mt-4 flex flex-col gap-2">
                 {footerLinks.map((link) => (
-                  <Link key={link.href} to={link.href} className="text-sm text-foreground hover:no-underline hover:text-primary">
+                  <Link key={`${link.label}-${link.href}`} to={link.href} className="text-sm text-foreground hover:no-underline hover:text-primary">
                     {link.label}
                   </Link>
                 ))}

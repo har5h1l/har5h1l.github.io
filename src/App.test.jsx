@@ -25,14 +25,6 @@ vi.mock('@/pages/Research', () => ({
   default: () => <div>Research Page</div>,
 }))
 
-vi.mock('@/pages/Projects', () => ({
-  default: () => <div>Projects Page</div>,
-}))
-
-vi.mock('@/pages/Blog', () => ({
-  default: () => <div>Blog Page</div>,
-}))
-
 vi.mock('@/pages/Publications', () => ({
   default: () => <div>Publications Page</div>,
 }))
@@ -50,5 +42,14 @@ describe('App routing', () => {
     render(<App />)
 
     expect(screen.getByText('Research Page')).toBeInTheDocument()
+  })
+
+  it('redirects the legacy blog route to the homepage writing anchor', () => {
+    window.history.pushState({}, '', '/blog')
+
+    render(<App />)
+
+    expect(screen.getByText('Home Page')).toBeInTheDocument()
+    expect(window.location.hash).toBe('#writing')
   })
 })

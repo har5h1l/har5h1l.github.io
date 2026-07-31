@@ -10,6 +10,9 @@ export function ProjectVisual({ project, className = '', compact = false, fillHe
 
   // minimal block for card: no duplicate date/tags/note, just icon + short line
   if (fillHeight) {
+    if (project.slug === 'partner-specific-affective-precision') {
+      return <div className={cn('flex min-h-0 flex-1 items-center justify-center bg-muted/60 p-6 text-center', className)}><p className="max-w-[13rem] text-xs font-semibold uppercase tracking-[0.16em] text-primary">Partner model <span className="mx-1 text-muted-foreground">→</span> Confidence <span className="mx-1 text-muted-foreground">→</span> Policy precision</p></div>
+    }
     return (
       <div
         className={cn(
@@ -19,7 +22,7 @@ export function ProjectVisual({ project, className = '', compact = false, fillHe
       >
         <div className="absolute inset-0 bg-[linear-gradient(135deg,transparent_0%,transparent_62%,rgba(33,84,133,0.06)_100%)]" />
         <div className="relative flex flex-col items-center justify-center gap-4 text-center">
-          <p className="text-sm font-medium text-muted-foreground">More info coming soon</p>
+          <p className="text-sm font-medium text-muted-foreground">Research overview</p>
         </div>
       </div>
     )

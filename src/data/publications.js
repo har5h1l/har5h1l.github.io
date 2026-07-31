@@ -4,6 +4,15 @@ export const publicationSections = [
     title: 'Peer-Reviewed Publications',
     items: [
       {
+        title: 'Partner-Specific Affective Precision in Social Active Inference',
+        authors: 'Harshil Shah, Andrew Pashea',
+        venue: 'International Workshop on Active Inference, 2026 — Accepted full paper',
+        role: 'FORTHCOMING',
+        summary: 'Models affective precision as relationship-specific confidence in a multi-partner trust setting, separating confidence in social prediction from commitment during policy selection.',
+        projectSlug: 'partner-specific-affective-precision',
+        links: [{ label: 'GitHub', href: 'https://github.com/har5h1l/affect_aif' }],
+      },
+      {
         title: 'Empathy Modeling in Active Inference Agents for Perspective-Taking and Alignment',
         venue: 'arXiv preprint, 2026',
         role: 'Co-author',
@@ -18,6 +27,15 @@ export const publicationSections = [
     id: 'conference',
     title: 'Conference Papers & Posters',
     items: [
+      {
+        title: 'VAMAI: Variational Affordance Mapping and Active Inference for Training-free Autonomous Drone Navigation',
+        authors: 'Satyaki Maitra, Harshil Shah',
+        venue: 'International Workshop on Active Inference, 2026 — Accepted poster',
+        role: 'POSTER',
+        summary: 'Presents a training-free hierarchical active-inference architecture for autonomous navigation using a persistent probabilistic affordance representation and coarse-to-fine planning.',
+        projectSlug: 'dronesuite',
+        links: [{ label: 'Project', href: 'https://www.shahmaitraresearch.com/vamai' }],
+      },
       {
         title: 'DroneSuite: Affordance-Based Hiearchical Active Inference for Autonomous Drones',
         venue: 'ACSEF/HSEF, 2026',

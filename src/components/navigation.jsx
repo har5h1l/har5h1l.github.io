@@ -8,7 +8,7 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 const navItems = [
   { name: 'Research & Projects', path: '/research' },
   { name: 'Publications', path: '/publications' },
-  { name: 'Blog', path: '/blog' },
+  { name: 'Writing', path: '/#writing' },
 ]
 
 export function Navigation() {
@@ -17,7 +17,7 @@ export function Navigation() {
 
   useEffect(() => {
     setIsMobileMenuOpen(false)
-  }, [location.pathname])
+  }, [location.pathname, location.hash])
 
   return (
     <nav className="fixed inset-x-0 top-0 z-50 border-b border-border/80 bg-background/92 backdrop-blur">
@@ -35,7 +35,7 @@ export function Navigation() {
 
         <div className="ml-auto hidden items-center gap-1 md:flex">
           {navItems.map((item) => {
-            const active = location.pathname === item.path
+            const active = item.path === '/#writing' ? location.pathname === '/' && location.hash === '#writing' : location.pathname === item.path
 
             return (
               <Link
@@ -85,7 +85,7 @@ export function Navigation() {
                       key={item.path}
                       to={item.path}
                       className={`rounded-2xl px-4 py-3 text-base font-medium hover:no-underline ${
-                        location.pathname === item.path ? 'bg-muted text-foreground' : 'text-muted-foreground'
+                        (item.path === '/#writing' ? location.pathname === '/' && location.hash === '#writing' : location.pathname === item.path) ? 'bg-muted text-foreground' : 'text-muted-foreground'
                       }`}
                     >
                       {item.name}

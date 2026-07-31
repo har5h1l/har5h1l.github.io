@@ -39,7 +39,7 @@ export function ProjectActions({ project, className = '', children }) {
     <div className={`flex flex-wrap items-center gap-3 ${className}`}>
       {!isOnResearchPage && project.type === 'research' && (
         <Button asChild size="sm">
-          <Link to={`/research#${getResearchAnchorId(project.title)}`}>Read research</Link>
+          <Link to={`/research#${getResearchAnchorId(project.title)}`}>View Research</Link>
         </Button>
       )}
 

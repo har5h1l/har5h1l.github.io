@@ -1,10 +1,12 @@
 import { ArrowUpRight } from 'lucide-react'
 
-export function SectionHeading({ eyebrow, title, description, className = '' }) {
+export function SectionHeading({ eyebrow, title, description, className = '', headingLevel = 2 }) {
+  const Heading = `h${headingLevel}`
+
   return (
     <div className={`max-w-3xl ${className}`}>
       {eyebrow && <p className="section-eyebrow">{eyebrow}</p>}
-      <h2 className="editorial-heading text-3xl sm:text-4xl">{title}</h2>
+      <Heading className="editorial-heading text-3xl sm:text-4xl">{title}</Heading>
       {description && <p className="mt-4 text-base sm:text-lg text-muted-foreground">{description}</p>}
     </div>
   )
