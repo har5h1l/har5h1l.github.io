@@ -40,17 +40,9 @@ export const profileLinks = [
 export const homeHero = {
   eyebrow: 'intelligence, cognition, computation',
   title: "Hi, I'm Harshil...",
-  paragraphs: [
-    'I’m a student researcher from the Bay Area interested in two connected questions: How can we build and understand intelligent systems, and how can we run them efficiently at scale?',
-    'My work draws from Active Inference, cognitive science, neuroscience-inspired approaches to AI, robotics, and multi-agent systems to study how agents learn, reason, and act under uncertainty. I’m also beginning to explore probabilistic and thermodynamic computing as alternative foundations for more efficient artificial intelligence.',
-  ],
 }
 
 export const researchDirection = {
-  intro: [
-    'I’m a student researcher from the Bay Area interested in two connected questions: How can we build and understand intelligent systems, and how can we run them efficiently at scale?',
-    'My work draws from Active Inference, cognitive science, neuroscience-inspired approaches to AI, robotics, and multi-agent systems to study how agents learn, reason, and act under uncertainty. I’m also beginning to explore probabilistic and thermodynamic computing as alternative foundations for more efficient artificial intelligence.',
-  ],
   directions: [
     {
       title: 'How can we build and understand intelligent systems?',
@@ -69,7 +61,9 @@ export const beyondTheLab = [
   [
     { type: 'text', value: 'Research is a major part of my life, but not the only one. I compete in public forum debate, play tennis for my school team, and lead ' },
     { type: 'link', href: 'https://risetennis.org/', value: 'R.I.S.E. Tennis' },
-    { type: 'text', value: ', a youth-run nonprofit focused on expanding access to the sport through clinics, equipment drives, and fundraising.' },
+    { type: 'text', value: ' and ' },
+    { type: 'link', href: 'https://www.skill-sprout.org/', value: 'SkillSprout' },
+    { type: 'text', value: '.' },
   ],
   'I also enjoy reading, listening to podcasts, experimenting with recipes and drinks, and following questions wherever they lead. Whether through debate, tennis, or research, I’m drawn to activities that require curiosity, adaptation, and a willingness to reconsider my assumptions.',
 ]

@@ -49,11 +49,6 @@ export default function Home() {
             <Motion.div initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.35, delay: 0.08 }} className="md:col-span-2">
               <p className="text-base font-medium text-primary sm:text-lg">{homeHero.eyebrow}</p>
               <h1 className="editorial-heading mt-3 text-4xl text-foreground sm:text-5xl md:text-6xl">{homeHero.title}</h1>
-              <div className="mt-5 space-y-4 text-lg leading-9 text-foreground/85">
-                {homeHero.paragraphs.map((paragraph) => (
-                  <p key={paragraph}>{paragraph}</p>
-                ))}
-              </div>
               <div className="mt-6 flex flex-wrap gap-3">
                 <Button asChild size="lg">
                   <a href="#research-direction">Research Direction</a>
@@ -76,10 +71,7 @@ export default function Home() {
 
           <div className="rounded-[28px] border border-border bg-card p-6 shadow-[0_12px_40px_rgba(22,34,44,0.06)] sm:p-8">
             <div className="text-lg leading-9 text-foreground/85">
-              <div className="space-y-4">
-                {researchDirection.intro.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
-              </div>
-              <div className="mt-6 space-y-6">
+              <div className="space-y-6">
                 {researchDirection.directions.map((direction) => (
                   <div key={direction.title} className="border-t border-border pt-6 first:border-t-0 first:pt-0">
                     <h3 className="text-xl font-semibold text-foreground">{direction.title}</h3>

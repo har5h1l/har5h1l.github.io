@@ -4,16 +4,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest'
 import Home from './Home'
 import { updates } from '@/data/updates'
 
-const heroParagraphs = [
-  'I’m a student researcher from the Bay Area interested in two connected questions: How can we build and understand intelligent systems, and how can we run them efficiently at scale?',
-  'My work draws from Active Inference, cognitive science, neuroscience-inspired approaches to AI, robotics, and multi-agent systems to study how agents learn, reason, and act under uncertainty. I’m also beginning to explore probabilistic and thermodynamic computing as alternative foundations for more efficient artificial intelligence.',
-]
-
 const researchDirection = {
-  intro: [
-    'I’m a student researcher from the Bay Area interested in two connected questions: How can we build and understand intelligent systems, and how can we run them efficiently at scale?',
-    'My work draws from Active Inference, cognitive science, neuroscience-inspired approaches to AI, robotics, and multi-agent systems to study how agents learn, reason, and act under uncertainty. I’m also beginning to explore probabilistic and thermodynamic computing as alternative foundations for more efficient artificial intelligence.',
-  ],
   directions: [
     {
       title: 'How can we build and understand intelligent systems?',
@@ -29,7 +20,7 @@ const researchDirection = {
 }
 
 const beyondTheLabParagraphs = [
-  'Research is a major part of my life, but not the only one. I compete in public forum debate, play tennis for my school team, and lead R.I.S.E. Tennis, a youth-run nonprofit focused on expanding access to the sport through clinics, equipment drives, and fundraising.',
+  'Research is a major part of my life, but not the only one. I compete in public forum debate, play tennis for my school team, and lead R.I.S.E. Tennis and SkillSprout.',
   'I also enjoy reading, listening to podcasts, experimenting with recipes and drinks, and following questions wherever they lead. Whether through debate, tennis, or research, I’m drawn to activities that require curiosity, adaptation, and a willingness to reconsider my assumptions.',
 ]
 
@@ -78,12 +69,12 @@ describe('Home', () => {
     expect(screen.getByRole('link', { name: 'Research Direction' })).toHaveAttribute('href', '#research-direction')
   })
 
-  it('renders the exact two-paragraph hero introduction', () => {
+  it('keeps the hero focused on its heading and research direction CTA', () => {
     renderHome()
 
     expect(screen.getByText('intelligence, cognition, computation')).toBeInTheDocument()
-    const hero = screen.getByRole('heading', { name: "Hi, I'm Harshil..." }).closest('section')
-    expect(within(hero).getAllByText((_, element) => heroParagraphs.includes(element.textContent))).toHaveLength(2)
+    expect(screen.getByRole('heading', { name: "Hi, I'm Harshil..." })).toBeInTheDocument()
+    expect(screen.queryByText(/I’m a student researcher from the Bay Area/)).not.toBeInTheDocument()
   })
 
   it('uses intelligent-systems and efficient-computing keywords in runtime metadata', () => {
@@ -101,9 +92,6 @@ describe('Home', () => {
     const research = screen.getByRole('heading', { name: 'The bigger picture' }).closest('section')
     const beyondTheLab = screen.getByRole('heading', { name: 'Beyond the lab' }).closest('section')
 
-    for (const paragraph of researchDirection.intro) {
-      expect(within(research).getByText(paragraph)).toBeInTheDocument()
-    }
     for (const direction of researchDirection.directions) {
       expect(within(research).getByRole('heading', { name: direction.title })).toBeInTheDocument()
       expect(within(research).getByText((_, element) => element.textContent === direction.body)).toBeInTheDocument()
@@ -140,6 +128,7 @@ describe('Home', () => {
 
     const beyondTheLab = screen.getByRole('heading', { name: 'Beyond the lab' }).closest('section')
     expect(within(beyondTheLab).getByRole('link', { name: 'R.I.S.E. Tennis' })).toHaveAttribute('href', 'https://risetennis.org/')
+    expect(within(beyondTheLab).getByRole('link', { name: 'SkillSprout' })).toHaveAttribute('href', 'https://www.skill-sprout.org/')
     expect(screen.getAllByRole('link', { name: 'Publications' })[0]).toHaveAttribute('href', '/publications')
     expect(screen.getByRole('link', { name: 'View all updates' })).toHaveAttribute('href', '/updates')
   })
