@@ -1,13 +1,21 @@
-import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 function ScrollToTop() {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
 
   useEffect(() => {
-    // scroll to the top of the page when the pathname changes
-    window.scrollTo(0, 0);
-  }, [pathname]);
+    if (!hash) {
+      window.scrollTo(0, 0);
+      return;
+    }
+
+    window.setTimeout(() => {
+      document
+        .getElementById(hash.slice(1))
+        ?.scrollIntoView({ block: "start" });
+    }, 0);
+  }, [hash, pathname]);
 
   // component doesn't render anything
   return null;

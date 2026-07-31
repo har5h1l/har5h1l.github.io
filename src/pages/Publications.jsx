@@ -1,62 +1,78 @@
-import { motion as Motion } from 'framer-motion'
-import { publicationSections } from '@/data/publications'
-import { SectionHeading, LinkChip } from '@/components/editorial'
-import { Seo } from '@/components/seo'
+import { motion as Motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import { publicationSections } from "@/data/publications";
+import { SectionHeading, LinkChip } from "@/components/editorial";
+import { Seo } from "@/components/seo";
 
 export default function Publications() {
   return (
     <div className="page-shell">
       <Seo
         title="Publications | Harshil Shah"
-        description="Publications, conference papers, posters, and talks by Harshil Shah across active inference, autonomous navigation, partner-specific affective precision, social learning, and biomedical machine learning."
-        keywords="Harshil Shah publications, active inference papers, autonomous navigation research, partner-specific affective precision, social learning, biomedical machine learning"
+        description="Papers, posters, and presentations from Harshil Shah’s research in Active Inference, autonomous systems, and social cognition."
+        keywords="Harshil Shah publications, Active Inference papers, autonomous systems, social cognition"
       />
-
       <section className="content-grid py-10 sm:py-14">
         <SectionHeading
-          eyebrow="Publications"
-          title="Publications, posters, and talks"
+          eyebrow="Research outputs"
+          title="Publications"
+          description="Papers, posters, and presentations arising from my research."
         />
       </section>
-
       <section className="content-grid pb-16 sm:pb-24">
-        <div className="space-y-10">
+        <div className="space-y-16">
           {publicationSections.map((section, sectionIndex) => (
             <Motion.section
               key={section.id}
+              id={section.id}
               initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-80px' }}
+              viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.35, delay: sectionIndex * 0.05 }}
-              className="rounded-[24px] border border-border bg-card p-6 shadow-[0_10px_30px_rgba(22,34,44,0.05)] sm:p-8"
+              className="scroll-mt-32 border-t border-border pt-12 first:border-t-0 first:pt-0"
             >
-              <h2 className="editorial-heading text-2xl text-foreground">{section.title}</h2>
-              <div className="mt-6 space-y-8">
+              <div className="flex flex-wrap items-baseline justify-between gap-3">
+                <h2 className="editorial-heading text-2xl text-foreground">
+                  {section.title}
+                </h2>
+                <Link
+                  to={`/research#${section.id}`}
+                  className="text-sm text-primary underline hover:no-underline"
+                >
+                  Back to research area
+                </Link>
+              </div>
+              <div className="mt-6 space-y-6">
                 {section.items.map((item) => (
-                  <article key={item.title} className="border-t border-border pt-6 first:border-t-0 first:pt-0">
-                    <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                  <article
+                    key={`${item.title}-${item.venue}`}
+                    className="border-t border-border pt-6 first:border-t-0 first:pt-0"
+                  >
+                    <div className="flex flex-wrap items-start justify-between gap-3">
                       <div className="max-w-3xl">
-                        <h3 className="editorial-heading text-xl text-foreground">{item.title}</h3>
-                        <p className="mt-2 text-sm font-medium text-foreground/75">{item.venue}</p>
+                        <h3 className="editorial-heading text-xl text-foreground">
+                          {item.title}
+                        </h3>
                         {item.authors && (
-                          <p className="mt-2 text-sm leading-7 text-muted-foreground">With {item.authors}</p>
+                          <p className="mt-2 text-sm leading-7 text-muted-foreground">
+                            {item.authors}
+                          </p>
                         )}
+                        <p className="mt-2 text-sm font-medium text-foreground/75">
+                          {item.venue}
+                        </p>
                       </div>
                       <span className="rounded-full bg-muted px-3 py-1 text-xs font-semibold uppercase tracking-[0.15em] text-muted-foreground">
-                        {item.role}
+                        {item.type}
                       </span>
                     </div>
-
-                    {item.summary && (
-                      <p className="mt-4 max-w-3xl text-sm leading-7 text-muted-foreground">{item.summary}</p>
-                    )}
-
-                    <div className="mt-5 flex flex-wrap gap-2">
-                      {item.projectSlug && (
-                        <LinkChip href={`/research#${item.projectSlug}`} label="More Details" />
-                      )}
+                    <div className="mt-4 flex flex-wrap gap-2">
                       {item.links.map((link) => (
-                        <LinkChip key={link.href} href={link.href} label={link.label} />
+                        <LinkChip
+                          key={link.href}
+                          href={link.href}
+                          label={link.label}
+                        />
                       ))}
                     </div>
                   </article>
@@ -67,5 +83,5 @@ export default function Publications() {
         </div>
       </section>
     </div>
-  )
+  );
 }

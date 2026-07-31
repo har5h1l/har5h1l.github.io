@@ -5,27 +5,51 @@
     <base href="/" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    
+
     <!-- Primary Meta Tags -->
     <title>Harshil Shah | Intelligent Systems and Efficient Computing</title>
-    <meta name="title" content="Harshil Shah | Intelligent Systems and Efficient Computing" />
-    <meta name="description" content="Student researcher exploring NeuroAI, Active Inference, embodied intelligence, robotics, multi-agent cognition, and efficient computing paradigms." />
-    <meta name="keywords" content="Harshil Shah, NeuroAI, Active Inference, embodied intelligence, robotics, multi-agent cognition, efficient computing, probabilistic computing, neuromorphic computing" />
+    <meta
+      name="title"
+      content="Harshil Shah | Intelligent Systems and Efficient Computing"
+    />
+    <meta
+      name="description"
+      content="Student researcher studying intelligent systems, Active Inference, embodied intelligence, social cognition, and efficient computation."
+    />
+    <meta
+      name="keywords"
+      content="Harshil Shah, Active Inference, embodied intelligence, robotics, social cognition, multi-agent systems, efficient computation, probabilistic computing, thermodynamic computing"
+    />
     <meta name="author" content="Harshil Shah" />
-    
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.harshils.com/" />
-    <meta property="og:title" content="Harshil Shah | Intelligent Systems and Efficient Computing" />
-    <meta property="og:description" content="Student researcher exploring NeuroAI, Active Inference, embodied intelligence, robotics, multi-agent cognition, and efficient computing paradigms." />
+    <meta
+      property="og:title"
+      content="Harshil Shah | Intelligent Systems and Efficient Computing"
+    />
+    <meta
+      property="og:description"
+      content="Student researcher studying intelligent systems, Active Inference, embodied intelligence, social cognition, and efficient computation."
+    />
     <meta property="og:image" content="https://www.harshils.com/favicon.ico" />
-    
+
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://www.harshils.com/" />
-    <meta property="twitter:title" content="Harshil Shah | Intelligent Systems and Efficient Computing" />
-    <meta property="twitter:description" content="Student researcher exploring NeuroAI, Active Inference, embodied intelligence, robotics, multi-agent cognition, and efficient computing paradigms." />
-    <meta property="twitter:image" content="https://www.harshils.com/favicon.ico" />
+    <meta
+      property="twitter:title"
+      content="Harshil Shah | Intelligent Systems and Efficient Computing"
+    />
+    <meta
+      property="twitter:description"
+      content="Student researcher studying intelligent systems, Active Inference, embodied intelligence, social cognition, and efficient computation."
+    />
+    <meta
+      property="twitter:image"
+      content="https://www.harshils.com/favicon.ico"
+    />
   </head>
   <body>
     <div id="root"></div>
@@ -40,16 +64,22 @@
       // When the single page app is loaded further down in this file,
       // the correct url will be waiting in the browser's history for
       // the single page app to route accordingly.
-      (function(l) {
-        if (l.search[1] === '/' ) {
-          var decoded = l.search.slice(1).split('&').map(function(s) { 
-            return s.replace(/~and~/g, '&')
-          }).join('?');
-          window.history.replaceState(null, null,
-              l.pathname.slice(0, -1) + decoded + l.hash
+      (function (l) {
+        if (l.search[1] === "/") {
+          var decoded = l.search
+            .slice(1)
+            .split("&")
+            .map(function (s) {
+              return s.replace(/~and~/g, "&");
+            })
+            .join("?");
+          window.history.replaceState(
+            null,
+            null,
+            l.pathname.slice(0, -1) + decoded + l.hash,
           );
         }
-      }(window.location))
+      })(window.location);
     </script>
     <script type="module" src="/src/main.jsx"></script>
   </body>

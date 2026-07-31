@@ -1,13 +1,38 @@
-import { BrowserRouter as Router, Navigate, Routes, Route } from 'react-router-dom'
-import { ThemeProvider } from '@/components/theme-provider'
-import { Navigation } from '@/components/navigation'
-import { Footer } from '@/components/footer'
-import ScrollToTop from '@/components/ScrollToTop'
-import Home from '@/pages/Home'
-import Research from '@/pages/Research'
-import Updates from '@/pages/Updates'
-import Publications from '@/pages/Publications'
-import '@fontsource-variable/inter';
+import {
+  BrowserRouter as Router,
+  Navigate,
+  Routes,
+  Route,
+  useParams,
+} from "react-router-dom";
+import { ThemeProvider } from "@/components/theme-provider";
+import { Navigation } from "@/components/navigation";
+import { Footer } from "@/components/footer";
+import ScrollToTop from "@/components/ScrollToTop";
+import Home from "@/pages/Home";
+import Research from "@/pages/Research";
+import Updates from "@/pages/Updates";
+import Publications from "@/pages/Publications";
+import "@fontsource-variable/inter";
+
+function LegacyProjectRedirect() {
+  const { slug } = useParams();
+  const destinations = {
+    wellnessgrid: "/updates",
+    "gaze-tracking-communication-system":
+      "https://github.com/har5h1l/GazeTracking",
+    focusgrid: "/research",
+    "nutritional-behavior-analytics": "/research",
+  };
+  const destination = destinations[slug] || "/research";
+
+  if (destination.startsWith("http")) {
+    window.location.replace(destination);
+    return null;
+  }
+
+  return <Navigate to={destination} replace />;
+}
 
 function App() {
   return (
@@ -22,15 +47,25 @@ function App() {
               <Route path="/research" element={<Research />} />
               <Route path="/publications" element={<Publications />} />
               <Route path="/updates" element={<Updates />} />
-              <Route path="/projects" element={<Navigate to="/research" replace />} />
-              <Route path="/blog" element={<Navigate to="/#writing" replace />} />
+              <Route
+                path="/projects"
+                element={<Navigate to="/research" replace />}
+              />
+              <Route
+                path="/projects/:slug"
+                element={<LegacyProjectRedirect />}
+              />
+              <Route
+                path="/blog"
+                element={<Navigate to="/#writing" replace />}
+              />
             </Routes>
           </main>
           <Footer />
         </div>
       </Router>
     </ThemeProvider>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -16,3 +16,9 @@
 - Conference and poster cards (including venue tags) are configured in `src/data/publications.js`.
 - The previous expandable “Still curious?” UI is preserved under `src/archive/home-still-curious-archive.jsx` while the live button targets `#contact`.
 - Verification in this repo is commonly done with `npm test`, `npm run build`, and `npm run lint`; `pnpm` may be unavailable in some agent shells.
+
+## Agent Process Hygiene
+
+- If the local Mac gets laggy, apps such as Chrome/Spotify fail to launch, or
+  MCP/Graphify/python/node children pile up under Codex/Cursor, use the
+  `cleaning-agent-process-storms` skill before killing processes.

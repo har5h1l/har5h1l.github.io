@@ -1,9 +1,8 @@
 export const updates = [
   {
     date: 'JULY 2026',
-    title: 'Full Paper and Poster Accepted at IWAI 2026',
-    description: 'Partner-Specific Affective Precision in Social Active Inference, co-authored with Andrew Pashea, was accepted as a full paper with a poster and spotlight presentation at the International Workshop on Active Inference. VAMAI, co-authored with Satyaki Maitra, was also accepted as a poster at the 2026 International Workshop on Active Inference.',
-    links: [{ label: 'View Project', href: 'https://www.shahmaitraresearch.com/vamai' }],
+    title: 'Two Acceptances at IWAI 2026',
+    description: 'Partner-Specific Affective Precision was accepted as a full paper, while VAMAI was accepted as a poster at IWAI 2026.',
   },
   {
     date: 'JULY 2026',
