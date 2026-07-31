@@ -76,16 +76,17 @@ export default function Home() {
 
           <div className="rounded-[28px] border border-border bg-card p-6 shadow-[0_12px_40px_rgba(22,34,44,0.06)] sm:p-8">
             <div className="text-lg leading-9 text-foreground/85">
-              <p>{researchDirection.intro}</p>
-              <div className="mt-6 grid gap-5 md:grid-cols-2">
+              <div className="space-y-4">
+                {researchDirection.intro.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+              </div>
+              <div className="mt-6 space-y-6">
                 {researchDirection.directions.map((direction) => (
-                  <div key={direction.title} className="rounded-[24px] border border-border bg-background/60 p-5 sm:p-6">
+                  <div key={direction.title} className="border-t border-border pt-6 first:border-t-0 first:pt-0">
                     <h3 className="text-xl font-semibold text-foreground">{direction.title}</h3>
-                    <p className="mt-3 whitespace-pre-line text-base leading-8 text-muted-foreground">{direction.body}</p>
+                    <p className="mt-3 text-base leading-8 text-muted-foreground">{direction.body}</p>
                   </div>
                 ))}
               </div>
-              <p className="mt-6">{researchDirection.closing}</p>
             </div>
           </div>
         </div>

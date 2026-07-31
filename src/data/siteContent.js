@@ -42,27 +42,27 @@ export const homeHero = {
   title: "Hi, I'm Harshil...",
   paragraphs: [
     'I’m a student researcher from the Bay Area interested in two connected questions: How can we build and understand intelligent systems, and how can we run them efficiently at scale?',
-    'My work draws from NeuroAI, Active Inference, cognitive science, robotics, and multi-agent systems to study how agents learn, reason, and act under uncertainty. I’m also beginning to explore probabilistic, thermodynamic, and neuromorphic computing as alternative foundations for more efficient artificial intelligence.',
+    'My work draws from Active Inference, cognitive science, neuroscience-inspired approaches to AI, robotics, and multi-agent systems to study how agents learn, reason, and act under uncertainty. I’m also beginning to explore probabilistic and thermodynamic computing as alternative foundations for more efficient artificial intelligence.',
   ],
 }
 
 export const researchDirection = {
-  intro:
-    'I’m interested in intelligence at two interconnected levels: the principles that allow biological and artificial systems to behave adaptively, and the computational machinery needed to implement those principles efficiently.',
+  intro: [
+    'I’m a student researcher from the Bay Area interested in two connected questions: How can we build and understand intelligent systems, and how can we run them efficiently at scale?',
+    'My work draws from Active Inference, cognitive science, neuroscience-inspired approaches to AI, robotics, and multi-agent systems to study how agents learn, reason, and act under uncertainty. I’m also beginning to explore probabilistic and thermodynamic computing as alternative foundations for more efficient artificial intelligence.',
+  ],
   directions: [
     {
-      title: 'Building and understanding intelligent systems',
+      title: 'How can we build and understand intelligent systems?',
       body:
-        'Many behaviors that appear effortless in biological organisms—adapting to unfamiliar environments, acting with incomplete information, coordinating with others, and learning continuously from experience—remain difficult for modern AI systems. I’m interested in how insights from computational neuroscience and cognitive science can help us build systems with stronger forms of adaptation, generalization, and autonomy.\n\nThis has led me toward NeuroAI, the Free Energy Principle, Active Inference, embodied and enactive cognition, affordance theory, and multi-agent intelligence. Rather than treating biological plausibility as an end in itself, I’m interested in using it as a source of useful principles and constraints for artificial systems. My current work applies these ideas to autonomous robotics, affective and social inference, and agents that must form and revise beliefs about uncertain environments and other agents.',
+        'Many abilities that biological organisms perform effortlessly—adapting continuously, acting under uncertainty, and coordinating with others—remain difficult for current AI systems. The Free Energy Principle and Active Inference offer a framework for thinking about how cognition emerges through perception, learning, and action. I’m interested in understanding cognition more deeply and applying its principles and constraints to build more adaptive AI systems. So far, I’ve explored these ideas through autonomous robotics, multi-agent systems, and affective and social inference.',
     },
     {
-      title: 'Making intelligent systems efficient and scalable',
+      title: 'How can we run them efficiently at scale?',
       body:
-        'Understanding intelligence is only part of the problem. We must also determine how increasingly capable systems can be implemented without relying indefinitely on greater amounts of conventional computation and energy.\n\nI’m beginning to explore probabilistic, thermodynamic, and neuromorphic computing as alternative ways of performing inference, optimization, and learning. These approaches use uncertainty, stochasticity, physical dynamics, or brain-inspired hardware as computational resources rather than treating them purely as obstacles. Long term, I’m interested in how new algorithms and computational substrates can make intelligent systems more efficient, scalable, and physically grounded.',
+        'Conventional digital computing has come a long way, but it can become costly or inefficient for many difficult inference and optimization problems. It is largely designed to suppress noise and randomness, yet I’ve come to understand that stochasticity can also be a valuable computational resource. I’m beginning to explore probabilistic and thermodynamic computing as approaches that harness uncertainty and physical dynamics rather than simply fighting them. Long term, I’m interested in how these methods could enable more efficient and scalable intelligent systems.',
     },
   ],
-  closing:
-    'These directions are closely related. Models of biological intelligence can suggest new computational principles, while emerging hardware and probabilistic computing paradigms can make those principles practical. I hope to work across this boundary: developing better theories and architectures for intelligent behavior while studying the systems needed to realize them.',
 }
 
 export const beyondTheLab = [
