@@ -74,18 +74,18 @@ export const researchDomains = [
       "I also contribute to research applying machine learning to complex biological and biomedical systems, particularly signed interaction graphs and representation learning for neuroscience data.",
     entries: [
       {
-        status: "Current research",
+        status: "Research in progress",
         title: "Topology-Guided Self-Training for Drug–Target Mechanism-of-Action Prediction",
         byline: "With Dr. Lei Xie (Northeastern University) and Mohammadsadeq Mottaqi (Vincent, CUNY Graduate Center)",
         description:
-          "Building on the lab’s existing FLASH model, I explore how the structure of biomedical interaction networks can help predict missing drug–target mechanisms of action and improve learning from incomplete data.",
+          "Building on the lab’s existing FLASH model, I explore how the structure of biomedical interaction networks can help predict missing drug–target mechanisms of action and improve learning from incomplete data. Contact me for more details.",
       },
       {
-        status: "Current research",
+        status: "Research in progress",
         title: "Spectrome: Learning Filters for Brain Structure–Function Modeling",
         byline: "UCSF Raj Lab · With Anil Kamat",
         description:
-          "I explore how machine learning can extend models that connect the brain’s structural wiring to its activity. The project studies whether learned filters can improve predictions of brain activity and generalize across individuals.",
+          "I explore how machine learning can extend models that connect the brain’s structural wiring to its activity. The project studies whether learned filters can improve predictions of brain activity and generalize across individuals. Contact me for more details.",
       },
       {
         status: "Contribution",
