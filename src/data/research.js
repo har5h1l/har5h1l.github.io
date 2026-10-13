@@ -48,11 +48,14 @@ export const researchDomains = [
     outputHref: "/publications#social-cognition",
     entries: [
       {
-        status: "ACCEPTED PAPER · IWAI 2026",
+        status: "PREPRINT · ACCEPTED FULL PAPER, IWAI 2026",
         title: "Partner-Specific Affective Precision in Social Active Inference",
+        byline: "With Andrew Pashea",
         description:
-          "This project models affective precision as a metacognitive estimate of confidence in the agent’s model of a particular partner. Each relationship maintains a confidence estimate based on that partner’s behavioral predictability, which modulates policy precision and shapes how strongly beliefs guide action without changing the beliefs themselves.",
+          "We model affective precision as partner-specific confidence in a multi-partner trust game, showing how it shapes policy commitment rather than partner-state inference. The work explores how confidence develops and changes across relationships, and why greater confidence does not necessarily lead to higher rewards.",
         links: [
+          { label: "Preprint", href: "https://arxiv.org/abs/2609.24876" },
+          { label: "IWAI 2026", href: "https://openreview.net/forum?id=QNzsV3aqt9" },
           { label: "GitHub", href: "https://github.com/har5h1l/affect_aif" },
         ],
       },
@@ -72,9 +75,17 @@ export const researchDomains = [
     entries: [
       {
         status: "Current research",
-        title: "Biomedical Signed Graph Neural Networks",
+        title: "Topology-Guided Self-Training for Drug–Target Mechanism-of-Action Prediction",
+        byline: "With Dr. Lei Xie (Northeastern University) and Mohammadsadeq Mottaqi (Vincent, CUNY Graduate Center)",
         description:
-          "This work studies signed graph neural networks for biomedical relation modeling, with emphasis on preserving positive and negative interaction structure and evaluating how models generalize across drugs and biological targets.",
+          "Building on the lab’s existing FLASH model, I explore how the structure of biomedical interaction networks can help predict missing drug–target mechanisms of action and improve learning from incomplete data.",
+      },
+      {
+        status: "Current research",
+        title: "Spectrome: Learning Filters for Brain Structure–Function Modeling",
+        byline: "UCSF Raj Lab · With Anil Kamat",
+        description:
+          "I explore how machine learning can extend models that connect the brain’s structural wiring to its activity. The project studies whether learned filters can improve predictions of brain activity and generalize across individuals.",
       },
       {
         status: "Contribution",

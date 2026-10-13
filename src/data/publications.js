@@ -8,7 +8,7 @@ export const publicationSections = [
           "VAMAI: Variational Affordance Mapping and Active Inference for Training-free Autonomous Drone Navigation",
         authors: "Satyaki Maitra, Harshil Shah",
         venue: "International Workshop on Active Inference, 2026",
-        type: "Accepted poster",
+        type: "Accepted spotlight and poster",
         links: [
           {
             label: "Project",
@@ -80,8 +80,10 @@ export const publicationSections = [
           "Partner-Specific Affective Precision in Social Active Inference",
         authors: "Harshil Shah, Andrew Pashea",
         venue: "International Workshop on Active Inference, 2026",
-        type: "Full paper · Forthcoming",
+        type: "Full paper · Poster and spotlight · Preprint available",
         links: [
+          { label: "Preprint", href: "https://arxiv.org/abs/2609.24876" },
+          { label: "IWAI 2026", href: "https://openreview.net/forum?id=QNzsV3aqt9" },
           { label: "GitHub", href: "https://github.com/har5h1l/affect_aif" },
         ],
       },
